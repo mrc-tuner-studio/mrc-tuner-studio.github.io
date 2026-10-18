@@ -1,40 +1,41 @@
-﻿/* MRC Tuner Studio — documentation theme (matches the desktop application's
-   signature palette: deep green surfaces, warm orange accent). */
+/* MRC Tuner Studio — documentation theme (matches the desktop application's
+   signature palette: carbon obsidian surfaces, electric cyan accent). */
 
 :root {
-  --mtr-green: #28aa5f;
-  --mtr-green-dark: #1d8f4c;
-  --mtr-green-soft: rgba(40, 170, 95, .14);
-  --mtr-accent: #ff8c3a;
-  --mtr-border: #183e2c;
-  --mtr-panel: #0b2118;
-  --mtr-bg: #07150f;
-  --mtr-text: #d6f0e1;
-  --mtr-dim: #73a58a;
+  --mtr-cyan: #38bdf8;
+  --mtr-cyan-dark: #0284c7;
+  --mtr-cyan-soft: rgba(56, 189, 248, .14);
+  --mtr-indigo: #6366f1;
+  --mtr-accent: #38bdf8;
+  --mtr-border: #1e293b;
+  --mtr-panel: #0f172a;
+  --mtr-bg: #07090e;
+  --mtr-text: #f8fafc;
+  --mtr-dim: #94a3b8;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #07150f;
-  --md-primary-fg-color--light: #0b2118;
-  --md-primary-fg-color--dark: #04100a;
-  --md-accent-fg-color: #ff8c3a;
-  --md-default-bg-color: #07150f;
-  --md-default-fg-color: #d6f0e1;
-  --md-default-fg-color--light: #73a58a;
-  --md-default-fg-color--lighter: #4d7561;
-  --md-default-fg-color--lightest: #183e2c;
-  --md-code-fg-color: #d6f0e1;
-  --md-code-bg-color: #0b2118;
-  --md-typeset-a-color: #3cc878;
-  --md-footer-bg-color: #050f0a;
-  --md-footer-bg-color--dark: #04100a;
-  --md-search-bg-color: #0b2118;
-  --md-search-border-color: #183e2c;
-  --md-nav-border-color: #183e2c;
-  --md-admonition-title--tip-bg-color: rgba(40, 170, 95, .12);
-  --md-admonition-title--tip-border-color: #28aa5f;
-  --md-admonition-title--warning-bg-color: rgba(255, 140, 58, .12);
-  --md-admonition-title--warning-border-color: #ff8c3a;
+  --md-primary-fg-color: #07090e;
+  --md-primary-fg-color--light: #0f172a;
+  --md-primary-fg-color--dark: #040508;
+  --md-accent-fg-color: #38bdf8;
+  --md-default-bg-color: #07090e;
+  --md-default-fg-color: #f8fafc;
+  --md-default-fg-color--light: #94a3b8;
+  --md-default-fg-color--lighter: #64748b;
+  --md-default-fg-color--lightest: #1e293b;
+  --md-code-fg-color: #38bdf8;
+  --md-code-bg-color: #0f172a;
+  --md-typeset-a-color: #38bdf8;
+  --md-footer-bg-color: #040508;
+  --md-footer-bg-color--dark: #020305;
+  --md-search-bg-color: #0f172a;
+  --md-search-border-color: #1e293b;
+  --md-nav-border-color: #1e293b;
+  --md-admonition-title--tip-bg-color: rgba(56, 189, 248, .12);
+  --md-admonition-title--tip-border-color: #38bdf8;
+  --md-admonition-title--warning-bg-color: rgba(245, 158, 11, .12);
+  --md-admonition-title--warning-border-color: #f59e0b;
 }
 
 [data-md-color-scheme="default"] {
