@@ -28,10 +28,17 @@
     document.querySelectorAll('.lang button').forEach(function (b) {
       b.classList.toggle('on', b.getAttribute('data-set-lang') === lang);
     });
+
+    // Keep docs links synchronized with current language
+    document.querySelectorAll('a[href*="docs/"]').forEach(function (a) {
+      var target = (lang === 'tr') ? 'docs/?lang=tr' : ('docs/' + lang + '/?lang=' + lang);
+      a.setAttribute('href', target);
+    });
   }
 
   window.mtrSetLang = function (next) {
     if (LANGS.indexOf(next) === -1) return;
+    try { localStorage.setItem('mtr-lang', next); } catch (e) {}
     var url = new URL(location.href);
     url.searchParams.set('lang', next);
     location.href = url.toString();

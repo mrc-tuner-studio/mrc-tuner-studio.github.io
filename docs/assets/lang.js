@@ -1,53 +1,89 @@
-/* Honour ?lang=tr|en|zh in the address bar.
-
-   The manual's default language is Turkish, so /docs/ is Turkish and
-   /docs/en/, /docs/zh/ are the translations. A request such as
-   /docs/?lang=en jumps straight to the English version of the page you are
-   on, and the Material language switcher keeps the parameter in sync. */
+/* MRC Tuner Studio — Language switcher & sync script
+   Supports tr (default), en, zh.
+   Preserves current chapter navigation and query parameters.
+*/
 (function () {
+  'use strict';
+
   var SUPPORTED = ['tr', 'en', 'zh'];
 
   function currentLocale() {
-    var m = window.location.pathname.match(/\/(en|zh)\//);
+    var path = window.location.pathname;
+    var m = path.match(/\/docs\/(en|zh)(?:\/|$)/);
     return m ? m[1] : 'tr';
   }
 
   function requested() {
-    var q = new URLSearchParams(window.location.search).get('lang');
-    return SUPPORTED.indexOf(q) !== -1 ? q : null;
+    try {
+      var q = new URLSearchParams(window.location.search).get('lang');
+      if (q && SUPPORTED.indexOf(q) !== -1) return q;
+    } catch (e) {}
+    return null;
   }
 
-  function prefix(locale) {
-    return locale === 'tr' ? '' : '/' + locale;
-  }
-
-  function pathInsideManual() {
+  function getTargetUrlForLocale(targetLang) {
+    if (SUPPORTED.indexOf(targetLang) === -1) return null;
     var path = window.location.pathname;
-    var at = path.indexOf('/docs');
-    if (at === -1) return '/';
-    var rest = path.slice(at + '/docs'.length).replace(/^\/(en|zh)/, '');
-    return rest || '/';
+    var idx = path.indexOf('/docs');
+    if (idx === -1) return null;
+
+    var base = path.slice(0, idx + '/docs'.length);
+    var sub = path.slice(idx + '/docs'.length);
+    var cleanSub = sub.replace(/^\/(?:en|zh)(?=\/|$)/, '');
+    if (!cleanSub.startsWith('/')) cleanSub = '/' + cleanSub;
+
+    var targetPrefix = (targetLang === 'tr') ? '' : '/' + targetLang;
+    var newPath = base + targetPrefix + cleanSub;
+
+    var url = new URL(window.location.href);
+    url.pathname = newPath;
+    url.searchParams.set('lang', targetLang);
+    return url.toString();
   }
 
+  // Handle ?lang= redirection if requested language differs from page language
   var want = requested();
   var have = currentLocale();
+
   if (want && want !== have) {
-    window.location.replace('/docs' + prefix(want) + pathInsideManual()
-      + window.location.search + window.location.hash);
+    try { localStorage.setItem('mtr-lang', want); } catch (e) {}
+    var targetUrl = getTargetUrlForLocale(want);
+    if (targetUrl && targetUrl !== window.location.href) {
+      window.location.replace(targetUrl);
+      return;
+    }
+  } else {
+    try { localStorage.setItem('mtr-lang', have); } catch (e) {}
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var links = document.querySelectorAll('[data-md-component="alternate"] a');
-    for (var i = 0; i < links.length; i++) {
-      links[i].addEventListener('click', function (ev) {
-        var href = this.getAttribute('href');
-        if (!href) return;
-        ev.preventDefault();
-        var target = new URL(href, window.location.origin);
-        var m = target.pathname.match(/\/(en|zh)\//);
-        target.searchParams.set('lang', m ? m[1] : 'tr');
-        window.location.href = target.toString();
+  function attachHandlers() {
+    var selector = '.md-select__link, a[hreflang]';
+    var links = document.querySelectorAll(selector);
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function (ev) {
+        var lang = link.getAttribute('hreflang');
+        if (!lang) {
+          var href = link.getAttribute('href') || '';
+          var m = href.match(/(?:\/|^)(en|zh)(?:\/|$)/);
+          lang = m ? m[1] : 'tr';
+        }
+
+        if (SUPPORTED.indexOf(lang) !== -1) {
+          ev.preventDefault();
+          try { localStorage.setItem('mtr-lang', lang); } catch (e) {}
+          var dest = getTargetUrlForLocale(lang);
+          if (dest) {
+            window.location.href = dest;
+          }
+        }
       });
-    }
-  });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachHandlers);
+  } else {
+    attachHandlers();
+  }
 })();
