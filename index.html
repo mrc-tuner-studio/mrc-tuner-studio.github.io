@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr" data-lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MRC Tuner Rom — Açık kaynak ECU kalibrasyon istasyonu</title>
+<title>MRC Tuner Studio — Açık kaynak ECU kalibrasyon istasyonu</title>
 <meta name="description" content="ROM dökümlerini etiketli, ölçekli ve düzenlenebilir haritalara dönüştüren açık kaynak ECU kalibrasyon ve tuning yazılımı.">
 <link rel="icon" href="assets/mark.png" type="image/png">
 <link rel="stylesheet" href="assets/site.css">
@@ -16,14 +16,14 @@
   })();
 </script>
 </head>
-<body data-title-tr="MRC Tuner Rom — Açık kaynak ECU kalibrasyon istasyonu"
-      data-title-en="MRC Tuner Rom — Open-source ECU calibration workstation"
-      data-title-zh="MRC Tuner Rom — 开源 ECU 标定工作站">
+<body data-title-tr="MRC Tuner Studio — Açık kaynak ECU kalibrasyon istasyonu"
+      data-title-en="MRC Tuner Studio — Open-source ECU calibration workstation"
+      data-title-zh="MRC Tuner Studio — 开源 ECU 标定工作站">
 
 <header class="site">
   <div class="wrap bar">
     <a class="brand" href="./">
-      <img class="mark" src="assets/mark.png" alt="MRC Tuner Rom">
+      <img class="mark" src="assets/mark.png" alt="MRC Tuner Studio">
       <span>MRC&nbsp;Tuner&nbsp;Rom</span>
     </a>
     <button class="menu-btn" type="button">☰</button>
@@ -48,25 +48,25 @@
 
   <div data-lang-block="tr">
     <h1>Ham baytları <span class="accent">anlamlı haritalara</span> dönüştürün</h1>
-    <p class="lead">MRC Tuner Rom; A2L, HEX, OLS veya ham dökümden başlayarak bir ECU'nun
+    <p class="lead">MRC Tuner Studio; A2L, HEX, OLS veya ham dökümden başlayarak bir ECU'nun
       tüm kalibrasyon haritalarını fiziksel birimlerle açar, düzenlemenizi sağlar,
       doğrular ve başka ROM'lara taşınabilir paketlere dönüştürür.</p>
   </div>
   <div data-lang-block="en" style="display:none">
     <h1>Turn raw bytes into <span class="accent">meaningful maps</span></h1>
-    <p class="lead">MRC Tuner Rom starts from A2L, HEX, OLS or a raw dump, opens every
+    <p class="lead">MRC Tuner Studio starts from A2L, HEX, OLS or a raw dump, opens every
       calibration map of an ECU in physical units, lets you edit it, verifies the
       result and exports it as packages you can carry to other ROMs.</p>
   </div>
   <div data-lang-block="zh" style="display:none">
     <h1>把原始字节变成<span class="accent">有意义的标定图</span></h1>
-    <p class="lead">MRC Tuner Rom 从 A2L、HEX、OLS 或原始转储出发，以物理单位打开 ECU
+    <p class="lead">MRC Tuner Studio 从 A2L、HEX、OLS 或原始转储出发，以物理单位打开 ECU
       的全部标定图，允许你进行编辑与校验，并导出可迁移到其他 ROM 的数据包。</p>
   </div>
 
   <div class="cta">
     <a class="btn btn-primary" href="docs/?lang=tr" data-tr="Kılavuzu oku →" data-en="Read the manual →" data-zh="阅读手册 →">Kılavuzu oku →</a>
-    <a class="btn btn-ghost" href="https://github.com/mrc-tuner-rom/MRC-Tuner-Rom" data-tr="Kaynak kodu" data-en="Source code" data-zh="源代码">Kaynak kodu</a>
+    <a class="btn btn-ghost" href="https://github.com/mrc-tuner-studio/MRC-Tuner-Studio" data-tr="Kaynak kodu" data-en="Source code" data-zh="源代码">Kaynak kodu</a>
   </div>
 
 </section>
@@ -98,10 +98,45 @@
       </div>
       <div class="card">
         <span class="ico">◱</span>
-        <h3 data-tr="Text · 2d · 3d görünüm" data-en="Text · 2d · 3d views" data-zh="Text · 2d · 3d 视图">Text · 2d · 3d</h3>
-        <p data-tr="Aynı haritayı ham bayt tablosu, dalga formu ve 3B yüzey olarak görün; 8/16/32-bit işaretli ve işaretsiz."
-           data-en="See the same map as raw bytes, waveform and 3D surface; 8/16/32-bit signed and unsigned."
-           data-zh="同一张标定图可切换原始字节、波形与三维曲面；支持 8/16/32 位有符号与无符号。">…</p>
+        <h3 data-tr="Bağlantılı görünümler · karşılaştırma" data-en="Linked views · comparison" data-zh="联动视图 · 对比">Bağlantılı görünümler · karşılaştırma</h3>
+        <p data-tr="Aynı haritayı ham bayt tablosu, dalga formu ve 3B yüzey olarak görün; üç görünüm birbirine bağlıdır. Mod / Ori / Δ / % karşılaştırma modlarıyla farkı renkli olarak izleyin; artışlar sıcak, düşüşler soğuk renkle gösterilir. 2D görünümde orijinal ve değiştirilmiş eğri üst üste çizilir; Slices seçeneği kalıcıdır, crosshair ve tablo-eğri seçim senkronu dahildir."
+           data-en="See the same map as raw bytes, waveform and 3D surface; all three views are linked. Track differences with the Mod / Ori / Δ / % comparison modes, colour-coded: warm for increases, cold for decreases. In 2D the original and modified curves are overlaid; Slices is persistent and crosshair plus table-curve selection sync are included."
+           data-zh="同一张标定图可作为原始字节表、波形与三维曲面查看，三种视图相互联动。用 Mod / Ori / Δ / % 对比模式追踪彩色差异：暖色表示增加，冷色表示减少。2D 视图中原始与修改后的曲线叠加绘制；Slices 选项持久保存，并含十字光标与表格-曲线选区同步。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">✥</span>
+        <h3 data-tr="2D'de sürükleyerek ayar (drag-to-tune)" data-en="Drag-to-tune on 2D" data-zh="2D 拖拽调校">2D'de sürükleyerek ayar</h3>
+        <p data-tr="Mod modunda 2D eğriyi fareyle dikey sürükleyerek seçili satırı doğrudan yazın; yazımlar ölçekleme/doğrulamadan geçer ve sürükleme başına tek geri-alma adımı üretilir. Seçili kolon 3D yüzeyde ve 3D Sim'de vurgulanır."
+           data-en="In Mod mode, drag the 2D curve vertically to write the selected row directly; writes pass scaling/validation and produce one undo step per drag. The selected column is highlighted on the 3D surface and in 3D Sim."
+           data-zh="在 Mod 模式下，纵向拖动 2D 曲线即可直接写入选中行；写入经过缩放/校验，每次拖动只产生一步撤销。选中列会在三维曲面与 3D Sim 中高亮。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">▦</span>
+        <h3 data-tr="WinOLS tarzı ızgara ve kısayollar" data-en="WinOLS-style grid &amp; shortcuts" data-zh="WinOLS 风格网格与快捷键">WinOLS tarzı ızgara ve kısayollar</h3>
+        <p data-tr="Text ve 2D ortak sütun düzeni: M/W ile sütun, Ctrl+←/→ ile origin; 2D'de belirgin line-break çizgileri ve çizgiyi sürükleyerek sütun sayısını değiştirme, seçimin çizgilere snap'lenmesi. Seçim menüsü (Select Cell/Column/Row, Invert, Restore Last, Save/Load, Selection→Map), Find/Replace bytes (?? joker) ve F/Shift+F, P, T, K, Ctrl+B kısayolları."
+           data-en="Shared Text/2D column layout: M/W for columns, Ctrl+←/→ for the origin; prominent 2D line-break guides you can drag to change the column count, with selections snapping to them. Selection menu (Select Cell/Column/Row, Invert, Restore Last, Save/Load, Selection→Map), Find/Replace bytes (?? wildcards) and the F/Shift+F, P, T, K, Ctrl+B shortcuts."
+           data-zh="Text 与 2D 共用列布局：M/W 增减列、Ctrl+←/→ 移动原点；2D 显示清晰的 line-break 竖线，可拖动改变列数，选区自动对齐竖线。选择菜单（Select Cell/Column/Row、Invert、Restore Last、Save/Load、Selection→Map）、Find/Replace bytes（?? 通配）以及 F/Shift+F、P、T、K、Ctrl+B 快捷键。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⎙</span>
+        <h3 data-tr="Farklar, rapor ve betik üretimi" data-en="Differences, reports &amp; script export" data-zh="差异、报告与脚本导出">Farklar, rapor ve betik üretimi</h3>
+        <p data-tr="Differences to Original… diyaloğu, F7/Shift+F7 ile fark gezinme, Print… ile tune raporu ve Save/Load axis profile. Import directory… ve Update all projects ile toplu işler; Start/Stop recording changes ile düzenlemeleri kaydedip Create script from changes… ile Lua veya .mtrpatch metnine çevirme. data/tuningpacks/ içinde örnek EDC16/EDC17 paket şablonları (tanım-only, doğrulanmamış)."
+           data-en="Differences to Original… dialog, F7/Shift+F7 difference navigation, Print… for the tuning report and Save/Load axis profile. Import directory… and Update all projects for batch work; Start/Stop recording changes to record edits and Create script from changes… to turn them into Lua or .mtrpatch text. Sample EDC16/EDC17 pack templates under data/tuningpacks/ (definition-only, unverified)."
+           data-zh="Differences to Original… 对话框、F7/Shift+F7 差异导航、Print… 输出调校报告以及 Save/Load axis profile。Import directory… 与 Update all projects 进行批量处理；Start/Stop recording changes 录制编辑，Create script from changes… 转换为 Lua 或 .mtrpatch 文本。data/tuningpacks/ 中提供示例 EDC16/EDC17 包模板（仅含定义，未经验证）。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⚙</span>
+        <h3 data-tr="Tema · kısayol · araç çubuğu" data-en="Theme · shortcuts · toolbar" data-zh="主题 · 快捷键 · 工具栏">Tema · kısayol · araç çubuğu</h3>
+        <p data-tr="Tüm tema renkleri renk seçiciyle düzenlenir; Comparison Delta Colors grubuyla artış/düşüş renkleri seçilir, kullanıcı teması .mtrtheme olarak kaydedilir ve paylaşılır. Klavye kısayolları çakışma uyarısıyla düzenlenir, araç çubuğu sağ tıkla özelleştirilir."
+           data-en="Every theme colour is editable with a colour picker; the Comparison Delta Colors group sets increase/decrease colours, and user themes are saved and shared as .mtrtheme. Keyboard shortcuts are edited with conflict warnings, and the toolbar is customised by right-click."
+           data-zh="所有主题颜色均可用取色器编辑；对比增量颜色分组设置增加/减少颜色，用户主题可保存为 .mtrtheme 并分享。键盘快捷键带冲突警告可编辑，工具栏可右键自定义。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">◈</span>
+        <h3 data-tr="Karşılaştırma modları ve delta görünümü" data-en="Comparison modes &amp; delta view" data-zh="对比模式与增量视图">Karşılaştırma modları ve delta görünümü</h3>
+        <p data-tr="Mod / Ori / Δ / % modlarıyla değişikliği hücre bazında renklendirin; 3B yüzeyde artışları kırmızı, düşüşleri mavi ısı haritası olarak görün. Değişen hücreler delta bayrağıyla işaretlenir. Δ/%Δ modunda üst araç çubuğunda delta özeti (değişen/toplam, yüzde, min/ort/max) görünür."
+           data-en="Colour changes cell by cell with the Mod / Ori / Δ / % modes; on the 3D surface, see increases in red and decreases in blue as a heat map. Changed cells are marked with a delta flag. In Δ/%Δ mode a delta summary (changed/total, percentage, min/avg/max) appears on the top toolbar."
+           data-zh="通过 Mod / Ori / Δ / % 模式按单元格为改动着色；在三维曲面上以热力图查看红色增加与蓝色减少。变化的单元格会带上增量标记。在 Δ/%Δ 模式下，顶部工具栏会显示增量汇总（变化/总数、百分比、最小/平均/最大）。">…</p>
       </div>
       <div class="card">
         <span class="ico">◈</span>
@@ -120,9 +155,37 @@
       <div class="card">
         <span class="ico">◐</span>
         <h3 data-tr="Checksum yönetimi" data-en="Checksum manager" data-zh="Checksum 管理">Checksum</h3>
-        <p data-tr="Yerleşik Bosch MED17/EDC17 doğrulaması; 148 modüllük Windows kütüphanesiyle geniş ECU ailesi desteği."
-           data-en="Built-in Bosch MED17/EDC17 verification, plus a 148-module Windows library for wider ECU coverage."
-           data-zh="内置 Bosch MED17/EDC17 校验，并提供 148 个模块的 Windows 库以覆盖更多 ECU 家族。">…</p>
+        <p data-tr="Yerleşik Bosch MED17/EDC17 doğrulaması; 148 modüllük Windows kütüphanesiyle geniş ECU ailesi desteği. Dışa aktarmada son checksum doğrulaması/düzeltmesi yapılır; aile tanımı yoksa &quot;doğrulanamadı&quot; uyarısı verilir."
+           data-en="Built-in Bosch MED17/EDC17 verification, plus a 148-module Windows library for wider ECU coverage. A final checksum check/correction runs on export; when no family definition exists the export is flagged &quot;could not be verified&quot;."
+           data-zh="内置 Bosch MED17/EDC17 校验，并提供 148 个模块的 Windows 库以覆盖更多 ECU 家族。导出时进行最后一次 checksum 校验/修正；若没有家族定义，则提示&quot;无法验证&quot;。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⛁</span>
+        <h3 data-tr="Veri tabanlı otomatik haritalama" data-en="Database-driven auto-mapping" data-zh="数据库驱动自动标定图">Auto-map (database)</h3>
+        <p data-tr="mapdefs.db kataloğundan HW/SW/ECU ailesine göre haritaları çıkarır; offset/sektör kaymasını parmak izi + değer imzasıyla hizalar, kör algılamayla harmanlar ve gözden geçirip projeye eklemenizi sağlar (ROM değişmez; katalog yoksa yalnız kör algılama)."
+           data-en="Extracts maps from the mapdefs.db catalogue by HW/SW/ECU family; aligns offset/sector shifts with a fingerprint + value signature, blends with blind detection and lets you review then add to the project (the ROM is unchanged; with no catalogue only blind detection runs)."
+           data-zh="按 HW/SW/ECU 家族从 mapdefs.db 目录提取标定图；用指纹 + 数值签名对齐偏移/扇区漂移，与盲检测融合，供你复核后加入工程（ROM 不变；无目录时仅运行盲检测）。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">✓</span>
+        <h3 data-tr="Checksums paneli ve canlı durum" data-en="Checksums panel &amp; live status" data-zh="Checksums 面板与实时状态">Checksums panel</h3>
+        <p data-tr="Kalıcı Checksums dock'unda Verify ve Correct &amp; Apply (tek geri-alma adımı); durum çubuğunda WinOLS tarzı canlı All CS ok / CS mismatch / no module / unknown göstergesi."
+           data-en="A persistent Checksums dock with Verify and Correct &amp; Apply (a single undo step); a WinOLS-style live All CS ok / CS mismatch / no module / unknown readout in the status bar."
+           data-zh="常驻 Checksums 停靠面板提供 Verify 与 Correct &amp; Apply（单步撤销）；状态栏显示 WinOLS 风格的实时 All CS ok / CS mismatch / no module / unknown 指示。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⚡</span>
+        <h3 data-tr="Native checksum motoru ve kapsam" data-en="Native checksum engine &amp; coverage" data-zh="原生 checksum 引擎与覆盖">Native checksum</h3>
+        <p data-tr="DLL'siz, config-driven native motor (native_checksums.json); native öncelik, DLL yedek; yalnız correctable + güvenli ailelerde düzeltir. Kapsam: 152 aile, 113 WinOLS ailesi, 13 native algoritma."
+           data-en="A DLL-free, config-driven native engine (native_checksums.json); native first, DLL fallback; corrects only correctable, safe families. Coverage: 152 families, 113 WinOLS families, 13 native algorithms."
+           data-zh="无需 DLL 的配置驱动原生引擎（native_checksums.json）；原生优先、DLL 兜底；仅在 correctable 且安全家族上修正。覆盖：152 个家族、113 个 WinOLS 家族、13 个原生算法。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">♡</span>
+        <h3 data-tr="Contribute knowledge (opt-in)" data-en="Contribute knowledge (opt-in)" data-zh="Contribute knowledge（可选加入）">Contribute knowledge</h3>
+        <p data-tr="Yalnız anonim teknik özet (yol/PII yok) yerel kuyruğa eklenir ve JSONL olarak dışa aktarılır; sunucuya gönderim sonraki adım."
+           data-en="Only an anonymous technical summary (no paths/PII) is queued locally and exported as JSONL; server submission is a later step."
+           data-zh="仅在本地排队保存匿名技术摘要（无路径/PII），并可导出为 JSONL；向服务器提交为后续步骤。">…</p>
       </div>
       <div class="card">
         <span class="ico">◱</span>
@@ -152,6 +215,76 @@
            data-en="Translate German/Bosch map names and descriptions, then correct results in a live preview."
            data-zh="翻译德语/博世标定图名称与说明，并可在实时预览中修正结果。">…</p>
       </div>
+      <div class="card">
+        <span class="ico">≣</span>
+        <h3 data-tr="2D görünüm stilleri" data-en="2D render styles" data-zh="2D 渲染样式">2D görünüm stilleri</h3>
+        <p data-tr="2D eğri stilini Classic (varsayılan), Columns veya WinOLS (ince değer ızgarası + kare nokta işaretçileri) olarak seçin; çalışma alanı 2D'sinde Column guides'ı açıp kapatın."
+           data-en="Pick the 2D curve style — Classic (default), Columns or WinOLS (fine value grid + square point markers); toggle Column guides in the workspace 2D view."
+           data-zh="选择 2D 曲线样式 —— Classic（默认）、Columns 或 WinOLS（细值网格 + 方形点标记）；在工作区 2D 视图中开关 Column guides。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">∑</span>
+        <h3 data-tr="Seçim istatistikleri ve ısı lejantı" data-en="Selection statistics &amp; heat legend" data-zh="选区统计与热力色标">Seçim istatistikleri</h3>
+        <p data-tr="Seçili hücreler için N · min · max · ort (ve orijinale göre Δort) anında görünür; araç çubuğundaki ısı lejantı aktif paleti ve değer aralığını gösterir."
+           data-en="See N · min · max · avg (and Δavg versus the original) for the selected cells instantly; the toolbar heat legend shows the active palette and value range."
+           data-zh="即时查看选中单元格的 N · min · max · avg（以及相对原始值的 Δavg）；工具栏热力色标显示当前配色与数值范围。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">◉</span>
+        <h3 data-tr="Change Recorder paneli" data-en="Change Recorder panel" data-zh="Change Recorder 面板">Change Recorder</h3>
+        <p data-tr="ROM düzenlemelerini canlı kaydedin: başlat/durdur, değişiklik listesi ve Lua betiği olarak kopyala/dışa aktar."
+           data-en="Record ROM edits live: start/stop, a change list and copy/export as a Lua script."
+           data-zh="实时录制 ROM 编辑：开始/停止、变更列表，并以 Lua 脚本复制/导出。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⇩</span>
+        <h3 data-tr="PDF · A2L · otomatik checksum" data-en="PDF · A2L · auto checksum" data-zh="PDF · A2L · 自动 checksum">PDF · A2L · checksum</h3>
+        <p data-tr="Tune raporunu PDF'e, harita tanımlarını A2L/DAMOS'a aktarın; dışa aktarma önizlemesi ve Correct checksums on export ile checksum'ları otomatik düzeltin."
+           data-en="Export the tuning report to PDF and map definitions to A2L/DAMOS; an export preview and Correct checksums on export fix checksums automatically."
+           data-zh="把调校报告导出为 PDF、标定图定义导出为 A2L/DAMOS；导出预览与 Correct checksums on export 自动修正 checksum。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⊕</span>
+        <h3 data-tr="Toplu tanıma ve ECU presetleri" data-en="Bulk recognition &amp; ECU presets" data-zh="批量识别与 ECU 预设">Toplu tanıma</h3>
+        <p data-tr="Recognize maps → add to project… ile tüm adayları veya yalnız yüksek güvenlileri klasörleyerek ekleyin; data/ecupresets presetlerini (doğrulanmamış uyarılı) uygulayın."
+           data-en="Recognize maps → add to project… promotes all candidates or high-confidence only, with folder grouping; apply data/ecupresets presets (unverified warning)."
+           data-zh="用 Recognize maps → add to project… 批量提升全部候选或仅高置信度候选并自动分组；应用 data/ecupresets 预设（带未验证警告）。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⇄</span>
+        <h3 data-tr="Harita karşılaştırma ve guided workflows" data-en="Map comparison &amp; guided workflows" data-zh="标定图对比与引导工作流">Karşılaştırma ve workflows</h3>
+        <p data-tr="Compare two maps… ile iki haritayı yan yana, fark renkleriyle inceleyin; AI Guided workflows kartları EGR/DPF/DTC/Swirl işlerini adım adım yürütür."
+           data-en="Compare two maps… to inspect two maps side by side with difference colours; AI Guided workflows cards walk through EGR/DPF/DTC/Swirl jobs."
+           data-zh="用 Compare two maps… 并排查看两张标定图的差值颜色；AI Guided workflows 卡片可逐步引导 EGR/DPF/DTC/Swirl 作业。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⌸</span>
+        <h3 data-tr="Yerleşim presetleri ve MCP araçları" data-en="Layout presets &amp; MCP tools" data-zh="布局预设与 MCP 工具">Yerleşim ve MCP</h3>
+        <p data-tr="Save Layout as… / Restore Layout / Delete Layout… ile çalışma alanı yerleşimlerini saklayın; MCP sunucusuna find_bytes, replace_bytes, list/add_auto_candidates ve accept_changes araçları eklendi (salt-okunur modda yazma araçları gizli)."
+           data-en="Save/restore/delete workspace layouts; the MCP server gained find_bytes, replace_bytes, list/add_auto_candidates and accept_changes (write tools hidden in read-only mode)."
+           data-zh="保存/恢复/删除工作区布局；MCP 服务器新增 find_bytes、replace_bytes、list/add_auto_candidates 与 accept_changes（只读模式下隐藏写入类工具）。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⌖</span>
+        <h3 data-tr="DTC Lookup ve ECU bilgi tabanı" data-en="DTC Lookup &amp; ECU knowledge base" data-zh="DTC 查询与 ECU 知识库">DTC Lookup</h3>
+        <p data-tr="ECU bilgi tabanından arıza teşhis kodu → ROM adresi + açıklama arar; sonuca çift tıklayınca adrese atlar. Yeni proje alanları ECU kimliğinden oto-doldurulur (data/ecukb/mtr_ecu.db, opsiyonel)."
+           data-en="Search the ECU knowledge base for a diagnostic trouble code → ROM address + description and jump to the address on double-click. New-project fields are auto-filled from the ECU identity (data/ecukb/mtr_ecu.db, optional)."
+           data-zh="从 ECU 知识库按故障诊断码搜索 → ROM 地址 + 说明，双击结果即跳转到该地址。新建工程字段会依据 ECU 身份自动预填（data/ecukb/mtr_ecu.db，可选）。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">⚒</span>
+        <h3 data-tr="Maintenance mode ve Relocation" data-en="Maintenance mode &amp; Relocation" data-zh="Maintenance mode 与 Relocation">Maintenance mode</h3>
+        <p data-tr="data/tuningops/ kataloğundan veri-driven DPF/EGR/AdBlue/Lambda/TVA/Flaps operasyonları; offset/sektör kayması önizlemesi, tek geri-alma adımı ve doğrulanmamış operasyon uyarısı."
+           data-en="Data-driven DPF/EGR/AdBlue/Lambda/TVA/Flaps operations from the data/tuningops/ catalogue; offset/sector-shift preview, a single undo step and an unverified-operation warning."
+           data-zh="从 data/tuningops/ 目录读取数据驱动的 DPF/EGR/AdBlue/Lambda/TVA/Flaps 操作；偏移/扇区漂移预览、单步撤销与未验证操作警告。">…</p>
+      </div>
+      <div class="card">
+        <span class="ico">📚</span>
+        <h3 data-tr="Yerel AI bilgi tabanı (RAG)" data-en="Local AI knowledge base (RAG)" data-zh="本地 AI 知识库（RAG）">Yerel AI bilgi tabanı</h3>
+        <p data-tr="Offline mtr_rag.db (SQLite FTS5) ile asistan sorunuza en yakın bilgi tabanı parçalarını isteme ekler ve salt-okunur kb_search aracını sunar; ağ gerekmez."
+           data-en="With the offline mtr_rag.db (SQLite FTS5) the assistant adds the knowledge-base excerpts closest to your question to the prompt and exposes a read-only kb_search tool; no network required."
+           data-zh="借助离线 mtr_rag.db（SQLite FTS5），助手把与问题最相关的知识库片段加入提示词，并提供只读的 kb_search 工具；无需联网。">…</p>
+      </div>
     </div>
   </div>
 </section>
@@ -161,9 +294,9 @@
   <div class="wrap">
     <p class="eyebrow" data-tr="AI asistanı" data-en="AI assistant" data-zh="AI 助手">AI asistanı</p>
     <h2 data-tr="İstediğiniz değişikliği söyleyin, o haritayı bulsun" data-en="Say what you want; it finds the map" data-zh="说出你的需求，由它找到标定图">İstediğiniz değişikliği söyleyin</h2>
-    <p class="sub" data-tr="Asistan tahmin yürütmez: 61 aracıyla projenin gerçek verisini okur, ne yapacağını yazar ve onayınızı ister."
-       data-en="The assistant does not guess: it reads the real project through 61 tools, states what it will do and asks for approval."
-       data-zh="助手不做猜测：它通过 61 个工具读取真实工程数据，说明将要执行的操作并请求你的批准。">…</p>
+    <p class="sub" data-tr="Asistan tahmin yürütmez: 61 aracıyla projenin gerçek verisini okur, ne yapacağını yazar ve onayınızı ister. Yerel mtr_rag.db varsa sorunuza en yakın bilgi tabanı parçalarını isteme ekler."
+       data-en="The assistant does not guess: it reads the real project through 61 tools, states what it will do and asks for approval. When the local mtr_rag.db is present it also adds the knowledge-base excerpts closest to your question."
+       data-zh="助手不做猜测：它通过 61 个工具读取真实工程数据，说明将要执行的操作并请求你的批准。存在本地 mtr_rag.db 时，还会把与问题最相关的知识库片段加入提示词。">…</p>
 
     <div class="chat">
       <div class="msg">
@@ -262,7 +395,7 @@
          data-zh="仓库以 GPL-3.0-or-later 发布：包含全部格式、标定图编辑器、AI 助手、Lua 引擎与 checksum 管理。">…</p>
       <div class="cta" style="justify-content:center">
         <a class="btn btn-primary" href="docs/?lang=tr" data-tr="Kılavuzu aç" data-en="Open the manual" data-zh="打开手册">Kılavuzu aç</a>
-        <a class="btn btn-ghost" href="https://github.com/mrc-tuner-rom/MRC-Tuner-Rom" data-tr="Depoyu görüntüle" data-en="View the repository" data-zh="查看仓库">Depoyu görüntüle</a>
+        <a class="btn btn-ghost" href="https://github.com/mrc-tuner-studio/MRC-Tuner-Studio" data-tr="Depoyu görüntüle" data-en="View the repository" data-zh="查看仓库">Depoyu görüntüle</a>
       </div>
       <p class="caption" style="margin-top:18px" data-tr="Bu depo şu anda özel (private) durumdadır; indirme bağlantıları yayınlandığında burada listelenecektir."
          data-en="This repository is currently private; download links will be listed here once releases are published."
@@ -275,11 +408,11 @@
   <div class="wrap">
     <div class="links">
       <a href="docs/?lang=tr" data-tr="Kılavuz" data-en="Manual" data-zh="手册">Kılavuz</a>
-      <a href="https://github.com/mrc-tuner-rom/MRC-Tuner-Rom">GitHub</a>
+      <a href="https://github.com/mrc-tuner-studio/MRC-Tuner-Studio">GitHub</a>
       <a href="NOTICES.md" data-tr="Üçüncü taraf bildirimleri" data-en="Third-party notices" data-zh="第三方声明">Üçüncü taraf</a>
       <a href="LICENSE" data-tr="Lisans" data-en="License" data-zh="许可证">Lisans</a>
     </div>
-    <p>© <span data-year>2026</span> Samet Muriç · MRC Tuner Rom ·
+    <p>© <span data-year>2026</span> Samet Muriç · MRC Tuner Studio ·
       <span data-tr="GPL-3.0-or-later" data-en="GPL-3.0-or-later" data-zh="GPL-3.0-or-later">GPL-3.0-or-later</span></p>
   </div>
 </footer>
