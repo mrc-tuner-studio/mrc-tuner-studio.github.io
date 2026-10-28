@@ -406,6 +406,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#obd-unlock-mg1-mevd172g" class="md-nav__link">
+    <span class="md-ellipsis">
+      OBD unlock (MG1 / MEVD17.2.G)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#version-snapshots" class="md-nav__link">
     <span class="md-ellipsis">
       Version snapshots
@@ -703,6 +712,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#obd-unlock-mg1-mevd172g" class="md-nav__link">
+    <span class="md-ellipsis">
+      OBD unlock (MG1 / MEVD17.2.G)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#version-snapshots" class="md-nav__link">
     <span class="md-ellipsis">
       Version snapshots
@@ -788,6 +806,17 @@ separately while working.</p>
 <p>Save the project wherever you like. The application keeps a recent-projects
 list in the settings; the file itself is portable.</p>
 </div>
+<h2 id="obd-unlock-mg1-mevd172g">OBD unlock (MG1 / MEVD17.2.G)<a class="headerlink" href="#obd-unlock-mg1-mevd172g" title="Permanent link">&para;</a></h2>
+<p><code>Project ▸ OBD Unlock (MG1)</code> applies a fixed byte-substitution patch at known
+offsets for four ECU variants: Gen1 MG1, Gen2 MG1 (pre-2020), Gen2 MG1
+(post-2020) and MEVD17.2.G. The ROM is matched by its byte signature first; an
+unrelated image is refused, and a ROM that is already unlocked is reported as
+such instead of being patched twice. MEVD17.2.G aborts when more than three patch
+sites contain unexpected bytes, so a version mismatch can never write blind.</p>
+<p>The patch modifies ROM data in memory; nothing is written to disk until you save
+or export. <strong>Check the legal situation in your country before using it</strong> —
+disabling OBD emissions monitoring is restricted in many jurisdictions and will
+fail an emissions inspection.</p>
 <h2 id="version-snapshots">Version snapshots<a class="headerlink" href="#version-snapshots" title="Permanent link">&para;</a></h2>
 <p><code>Project ▸ Version Snapshot</code> stores the complete state at that moment under a
 name you choose. Snapshots are:</p>

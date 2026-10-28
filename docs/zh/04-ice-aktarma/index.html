@@ -471,6 +471,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ols-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLS 映射包（.json）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vag-frfsgoodx" class="md-nav__link">
     <span class="md-ellipsis">
       VAG 容器（.frf、.sgo、.odx）
@@ -766,6 +775,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ols-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLS 映射包（.json）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vag-frfsgoodx" class="md-nav__link">
     <span class="md-ellipsis">
       VAG 容器（.frf、.sgo、.odx）
@@ -887,7 +905,14 @@
 </ul>
 <p>旧版 4.x 包有时不保存尺寸；应用会按单元格数量反推列数 × 行数。</p>
 <h2 id="tunerproxdf">TunerPro（<code>.xdf</code>）<a class="headerlink" href="#tunerproxdf" title="Permanent link">&para;</a></h2>
-<p><code>.xdf</code> 定义文件可导入也可导出。</p>
+<p><code>.xdf</code> 定义文件可导入也可导出。导入时会解析 <code>mmedtypeflags</code>：有符号、小端与
+浮点表均按定义声明的方式读取。<code>BASEOFFSET</code> 的方向遵循 <code>subtract</code> 属性（分段的
+512K/64K 定义使用相加形式）。</p>
+<h2 id="ols-json">OLS 映射包（<code>.json</code>）<a class="headerlink" href="#ols-json" title="Permanent link">&para;</a></h2>
+<p>WinOLS 的"OLS-Files"导出器生成的 <code>.json</code> 映射包可通过
+<code>工程 ▸ 导入 ▸ OLS 映射包（JSON）</code> 读取。映射包只包含映射定义（地址、尺寸、轴、
+缩放、文件夹），不含 ROM 字节，因此会叠加在已打开的 ROM 之上。同一份定义可用
+<code>工程 ▸ 导出 ▸ OLS 映射包（JSON）</code> 写回，以便把映射结构迁移到另一套 WinOLS。</p>
 <h2 id="vag-frfsgoodx">VAG 容器（<code>.frf</code>、<code>.sgo</code>、<code>.odx</code>）<a class="headerlink" href="#vag-frfsgoodx" title="Permanent link">&para;</a></h2>
 <p>支持 <code>.frf</code>、<code>.sgo</code>、<code>.odx</code> 及其 <code>.zip</code> 打包。加密内容需要额外的 32 字节
 AES 密钥/IV 文件。</p>

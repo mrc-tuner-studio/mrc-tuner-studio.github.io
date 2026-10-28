@@ -406,6 +406,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#obd-kilidi-acma-mg1-mevd172g" class="md-nav__link">
+    <span class="md-ellipsis">
+      OBD kilidi açma (MG1 / MEVD17.2.G)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#surum-anlk-goruntuleri" class="md-nav__link">
     <span class="md-ellipsis">
       Sürüm anlık görüntüleri
@@ -703,6 +712,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#obd-kilidi-acma-mg1-mevd172g" class="md-nav__link">
+    <span class="md-ellipsis">
+      OBD kilidi açma (MG1 / MEVD17.2.G)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#surum-anlk-goruntuleri" class="md-nav__link">
     <span class="md-ellipsis">
       Sürüm anlık görüntüleri
@@ -788,6 +806,17 @@ dosyada taşımak zorunda kalmazsınız.</p>
 <p>Proje dosyasını istediğiniz yere kaydedebilirsiniz. Uygulama "son
 projeler" listesini ayarlarda tutar; dosyanın kendisi taşınabilirdir.</p>
 </div>
+<h2 id="obd-kilidi-acma-mg1-mevd172g">OBD kilidi açma (MG1 / MEVD17.2.G)<a class="headerlink" href="#obd-kilidi-acma-mg1-mevd172g" title="Permanent link">&para;</a></h2>
+<p><code>Proje ▸ OBD Kilidi Aç (MG1)</code> dört ECU varyantı için bilinen adreslerde sabit bayt
+değişimi uygular: Gen1 MG1, Gen2 MG1 (2020 öncesi), Gen2 MG1 (2020 sonrası) ve
+MEVD17.2.G. Önce ROM bayt imzasıyla eşleştirilir; ilgisiz bir imaj reddedilir ve
+zaten kilidi açık bir ROM tekrar yamalanmak yerine "zaten açık" olarak bildirilir.
+MEVD17.2.G'de üçten fazla yama noktası beklenmeyen bayt içeriyorsa işlem durur;
+böylece sürüm uyuşmazlığında kör yazma olmaz.</p>
+<p>Yama ROM verisini bellekte değiştirir; siz kaydedene veya dışa aktarana kadar diske
+hiçbir şey yazılmaz. <strong>Kullanmadan önce bulunduğunuz ülkedeki hukuki durumu
+kontrol edin</strong> — OBD emisyon izlemesini devre dışı bırakmak birçok ülkede
+kısıtlanmıştır ve emisyon muayenesinden geçemez.</p>
 <h2 id="surum-anlk-goruntuleri">Sürüm anlık görüntüleri<a class="headerlink" href="#surum-anlk-goruntuleri" title="Permanent link">&para;</a></h2>
 <p><code>Proje ▸ Sürüm Anlık Görüntüsü</code> o andaki tüm durumu adlandırılmış bir sürüm
 olarak saklar. Anlık görüntüler:</p>

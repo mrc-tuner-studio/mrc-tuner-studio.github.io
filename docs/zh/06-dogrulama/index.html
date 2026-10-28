@@ -517,6 +517,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bosch-med17-edc17-cvn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bosch MED17 / EDC17 校验和与 CVN 签名
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#checksum_2" class="md-nav__link">
     <span class="md-ellipsis">
       内置（原生）checksum 引擎
@@ -850,6 +859,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bosch-med17-edc17-cvn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bosch MED17 / EDC17 校验和与 CVN 签名
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#checksum_2" class="md-nav__link">
     <span class="md-ellipsis">
       内置（原生）checksum 引擎
@@ -1087,6 +1105,14 @@ Spec，后 DLL 算法）：</p>
   在<strong>未修改</strong>的情况下导出。此时刷写前必须自行验证 checksum。</li>
 </ul>
 <p>若目录缺失，则无法进行上述区分，该功能会静默关闭；导出同样不会被阻止。</p>
+<h2 id="bosch-med17-edc17-cvn">Bosch MED17 / EDC17 校验和与 CVN 签名<a class="headerlink" href="#bosch-med17-edc17-cvn" title="Permanent link">&para;</a></h2>
+<p>MED17/EDC17 映像并非只有一个校验和：flash 被划分为多个块，每块各有自己的 CRC32
+（多项式 <code>0x04C11DB7</code>，MSB 在前），另有一个客户块，以及诊断仪通过 OBD 读取的
+1024 位 RSA 签名（CVN）。内置引擎会解析 TriCore 块描述符、校验并重写块 CRC，
+并重新推导客户块。对无法识别的映像会返回 <code>InvalidFormat</code>，且 <strong>绝不写入任何
+字节</strong> —— 在真实 ECU 映像上盲目执行校验和会使其无法使用。</p>
+<p>由于块 CRC 修正后会重新计算 RSA 块，CVN 与修改后的 flash 保持一致，文件不会在
+诊断设备上显示为"已修改"。</p>
 <h2 id="checksum_2">内置（原生）checksum 引擎<a class="headerlink" href="#checksum_2" title="Permanent link">&para;</a></h2>
 <p>应用自带一个<strong>配置驱动的原生 checksum 引擎</strong>，无需 DLL。家族→算法的映射从
 <code>data/ecukb/native_checksums.json</code> 读取（由

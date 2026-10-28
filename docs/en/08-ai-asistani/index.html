@@ -503,6 +503,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opencode-bridge-the-recommended-path-for-free-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenCode Bridge — the recommended path for free models
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -515,9 +530,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tools-61" class="md-nav__link">
+  <a href="#tools-71" class="md-nav__link">
     <span class="md-ellipsis">
-      Tools (61)
+      Tools (71)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-a-map-by-name-or-by-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting a map: by name or by address
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#byte-order-and-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Byte order and scaling
     </span>
   </a>
   
@@ -563,6 +596,15 @@
   <a href="#limits" class="md-nav__link">
     <span class="md-ellipsis">
       Limits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-server-external-ai-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP server (external AI agents)
     </span>
   </a>
   
@@ -709,6 +751,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opencode-bridge-the-recommended-path-for-free-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenCode Bridge — the recommended path for free models
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -721,9 +778,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tools-61" class="md-nav__link">
+  <a href="#tools-71" class="md-nav__link">
     <span class="md-ellipsis">
-      Tools (61)
+      Tools (71)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-a-map-by-name-or-by-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting a map: by name or by address
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#byte-order-and-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Byte order and scaling
     </span>
   </a>
   
@@ -774,6 +849,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mcp-server-external-ai-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP server (external AI agents)
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -811,7 +895,7 @@ approval.</p>
 <td>Run locally, no key needed</td>
 </tr>
 <tr>
-<td>OpenCode Zen / Go / Free</td>
+<td>OpenCode Zen / Go</td>
 <td>Works with OpenCode credentials</td>
 </tr>
 <tr>
@@ -824,6 +908,38 @@ approval.</p>
 the credentials can be imported straight from the TUI with <strong>Import from
 opencode TUI</strong>. Model lists are fetched live from the provider; the ⟳ button
 refreshes them.</p>
+<h3 id="opencode-bridge-the-recommended-path-for-free-models">OpenCode Bridge — the recommended path for free models<a class="headerlink" href="#opencode-bridge-the-recommended-path-for-free-models" title="Permanent link">&para;</a></h3>
+<p>The <code>opencode.ai</code> free tier verifies that a request really comes from the
+official OpenCode client (Cloudflare TLS/JA3-JA4 fingerprinting, HTTP/2 frame
+analysis, the User-Agent header and the tool declarations in the body). Spoofing
+headers therefore does not work.</p>
+<p><strong>The OpenCode Bridge does not spoof — it uses the real client.</strong> The official
+<code>opencode</code> binary is started in the background as a local HTTP server
+(<code>opencode serve</code>) and the application only ever talks to it over <code>127.0.0.1</code>.
+The upstream call is made by the official client, so the fingerprint problem
+disappears.</p>
+<ul>
+<li>Install: <code>npm install -g opencode-ai</code> (the app finds the binary automatically).</li>
+<li>No credentials needed: sign-in lives in OpenCode's own auth store (run
+  <code>opencode auth login</code> once).</li>
+<li>The bridge launches the server with <strong>its own private configuration</strong>: the
+  user's own MCP servers are disabled and only MRC's ROM tool server is
+  registered. Reason: the free tier rejects requests carrying <strong>more than 128
+  tool definitions</strong>, and an installation with several MCP servers registered
+  crosses that limit instantly, failing every <code>-free</code> model.</li>
+<li>Default endpoint <code>http://127.0.0.1:41999</code>, configurable under Settings → AI.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">MCP tools work in bridge mode too</p>
+<p>The bridge registers MRC's own MCP server (<code>mtrmcp.exe</code>, 82 ROM tools) in
+the OpenCode configuration automatically. Free models can call <code>list_maps</code>,
+<code>get_map_values</code>, <code>set_map_values</code>, <code>compare_map_values</code>, <code>scan_dtcs</code> and
+the rest directly. Opening a project binds the tool server to that project;
+if you switch projects, the bridge restarts the server on the next message
+so the tools follow the new project. If the tool server ever dies (crash,
+<code>mtrmcp.exe</code> rebuild, antivirus), the bridge reconnects it automatically on
+the next message; you do not need to restart the application.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Your data boundaries</p>
 <p>API keys stay on your machine. When you select a provider, the conversation
@@ -853,7 +969,7 @@ and the tool results are sent to that provider. Use a local provider
 </tr>
 </tbody>
 </table>
-<h2 id="tools-61">Tools (61)<a class="headerlink" href="#tools-61" title="Permanent link">&para;</a></h2>
+<h2 id="tools-71">Tools (71)<a class="headerlink" href="#tools-71" title="Permanent link">&para;</a></h2>
 <p>They fall into five groups:</p>
 <p><strong>Discovery</strong> — map search, listing by name, map properties, axes, folders,
 statistics.</p>
@@ -865,6 +981,66 @@ smooth, apply an expression, copy a map, undo.</p>
 results.</p>
 <p><strong>Planning</strong> — <code>plan_start</code>, <code>plan_propose</code>, <code>plan_list</code>, <code>plan_remove</code>,
 <code>plan_review</code>, <code>plan_finalize</code>, <code>plan_apply</code>.</p>
+<h2 id="selecting-a-map-by-name-or-by-address">Selecting a map: by name or by address<a class="headerlink" href="#selecting-a-map-by-name-or-by-address" title="Permanent link">&para;</a></h2>
+<p>The map tools (<code>get_map_info</code>, <code>get_map_values</code>, <code>get_original_values</code>,
+<code>get_axis_values</code>, <code>get_map_statistics</code>, <code>set_map_values</code>, …) accept two ways
+of picking a map:</p>
+<ul>
+<li><code>map_name</code> — the map name; if it is ambiguous a candidate list comes back.</li>
+<li><code>address</code> — an address such as <code>0x00009174</code>; when the address is unique the
+  result is exact.</li>
+</ul>
+<p>When a name is ambiguous the tool returns a <code>candidates</code> array. Every candidate
+carries <code>address</code> (hex) and <code>addressDec</code> (number), so the next call can use the
+address directly. The address format is identical across every tool: <code>address</code>
+is always an 8-digit uppercase hex string, <code>addressDec</code> is always an integer.</p>
+<h2 id="byte-order-and-scaling">Byte order and scaling<a class="headerlink" href="#byte-order-and-scaling" title="Permanent link">&para;</a></h2>
+<p>The byte order can differ <strong>per map family</strong> within one ROM. The tool layer no
+longer uses the global project byte order — it uses the map's own order
+(<code>MapInfo::cellBigEndian</code>). A2L carries no per-map byte order, so the project
+setting applies there. Axis points follow the same rule.</p>
+<p>Read responses are enriched so a result can be verified:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataSize</code></td>
+<td>Cell size in bytes</td>
+</tr>
+<tr>
+<td><code>signed</code></td>
+<td>Whether the cell is signed</td>
+</tr>
+<tr>
+<td><code>effectiveByteOrder</code></td>
+<td>The byte order actually used for the read</td>
+</tr>
+<tr>
+<td><code>raw</code></td>
+<td>Raw cell bytes (<code>"6F 6F"</code>)</td>
+</tr>
+<tr>
+<td><code>scaling</code></td>
+<td>Scaling: <code>coeffA</code>, <code>offset</code>, <code>formula</code>, <code>unit</code></td>
+</tr>
+<tr>
+<td><code>scalingKnown</code></td>
+<td>Whether a scaling definition exists</td>
+</tr>
+<tr>
+<td><code>valuesAreRaw</code></td>
+<td>Without scaling the values are raw storage integers</td>
+</tr>
+</tbody>
+</table>
+<p>When <code>scalingKnown</code> is false the <code>values</code> array is <strong>not</strong> in physical units —
+it holds raw storage integers, and the response says so in <code>note</code>. A unit
+mistake such as "degrees instead of °C" therefore cannot pass silently.</p>
 <h2 id="plan-first-workflow">Plan-first workflow<a class="headerlink" href="#plan-first-workflow" title="Permanent link">&para;</a></h2>
 <p>Put the assistant in <strong>Plan</strong> mode for large changes. The model follows:</p>
 <ol>
@@ -905,8 +1081,26 @@ lets you return to earlier sessions.</p>
 <li>The assistant only reaches the open project's data; it does not roam the file
   system.</li>
 <li>Write tools cannot bypass the validation layers.</li>
+<li>Every change the AI makes can be <strong>reverted with Ctrl+Z</strong> — each write
+  leaves a reversible ROM record behind. The <strong>Modified</strong> filter and the
+  "Mod (N)" counter in the left panel update right away; you do not have to
+  restart the program.</li>
 <li>It cannot <strong>guarantee</strong> that a safety or emissions test will pass — do not
   decide without measuring.</li>
+</ul>
+<h2 id="mcp-server-external-ai-agents">MCP server (external AI agents)<a class="headerlink" href="#mcp-server-external-ai-agents" title="Permanent link">&para;</a></h2>
+<p>MRC Tuner Studio includes a headless <strong>Model Context Protocol (MCP)</strong> server binary named <code>mtrmcp.exe</code>. External AI agents such as Claude Desktop, Claude Code, OpenCode, and Cursor can connect directly to the ROM engine through this server.</p>
+<ul>
+<li><strong>Menu access:</strong> <code>AI ▸ MCP Server &amp; AI Integrations (Claude, OpenCode)…</code></li>
+<li><strong>Dialog controls:</strong> Start and stop the headless server with one click, inspect live stdout/stderr logs, configure Claude Desktop, Claude Code, and OpenCode automatically, or copy generic JSON snippets.</li>
+<li><strong>82 tools:</strong> Exposes a full suite of tools including map listing/reading/writing, ROM byte search/replacement, DTC scanning (<code>scan_dtcs</code>) and enabling/disabling (<code>set_dtc_status</code>), checksum verification (<code>verify_checksums</code>), automatic map discovery (<code>scan_rom_maps</code>), version snapshots, and the plan-first workflow.</li>
+<li><strong>Structured responses:</strong> Every response also carries the payload as a real JSON object in <code>structuredContent</code>, so a client no longer has to parse the <code>text</code> JSON a second time.</li>
+<li><strong>Write policy:</strong> <code>--bypass-dialogs</code> (the default) applies write tools directly and <strong>never opens a modal dialog</strong>. <code>--confirm</code> refuses to write and returns <code>{"status":"confirmation_required"}</code> with the ROM provably untouched. <code>--read-only</code> does not advertise write tools at all.</li>
+<li><strong>Read-only guarantee:</strong> The guarantee now also covers the edge cases — logbook writes (<code>append_tuning_note</code>, <code>log_dyno_result</code>), checksum correction (<code>verify_checksums</code> with <code>correct</code>), ROM scanning, target-ROM selection and closing the project.</li>
+<li><strong>Undo / redo / status:</strong> <code>undo_last_change</code>, <code>redo</code> and <code>project_status</code> manage the project state and history; <code>project_status</code> also reports how many maps were modified.</li>
+<li><strong>Structured folders:</strong> <code>list_folders</code> and <code>get_folder_maps</code> return <code>key</code>, <code>description</code> and <code>parent</code> separately for every folder, so a composite <code>KEY: "description"</code> name no longer has to be parsed by hand. Exposes a full suite of tools including map listing/reading/writing, ROM byte search/replacement, DTC scanning (<code>scan_dtcs</code>) and enabling/disabling (<code>set_dtc_status</code>), checksum verification (<code>verify_checksums</code>), automatic map discovery (<code>scan_rom_maps</code>), version snapshots, and the plan-first workflow.</li>
+<li><strong>Security:</strong> "Read-only mode" in the dialog is ENABLED by default; mutating tools are excluded from discovery and rejected if called. In write mode, an automatic reversible version snapshot is taken prior to every write.</li>
+<li><strong>CLI usage:</strong> Can be run standalone via <code>mtrmcp.exe --project &lt;file.mtrp&gt;</code> or in read-only mode via <code>mtrmcp.exe --read-only</code>.</li>
 </ul>
 
 

@@ -517,6 +517,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bosch-med17-edc17-checksums-and-the-cvn-signature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bosch MED17 / EDC17 checksums and the CVN signature
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#built-in-native-checksum-engine" class="md-nav__link">
     <span class="md-ellipsis">
       Built-in (native) checksum engine
@@ -850,6 +859,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bosch-med17-edc17-checksums-and-the-cvn-signature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bosch MED17 / EDC17 checksums and the CVN signature
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#built-in-native-checksum-engine" class="md-nav__link">
     <span class="md-ellipsis">
       Built-in (native) checksum engine
@@ -1097,6 +1115,17 @@ human-readable <strong>algorithm hint</strong>. The application distinguishes tw
 </ul>
 <p>When the catalogue is absent this distinction cannot be made and the feature
 silently disappears; the export is still not blocked.</p>
+<h2 id="bosch-med17-edc17-checksums-and-the-cvn-signature">Bosch MED17 / EDC17 checksums and the CVN signature<a class="headerlink" href="#bosch-med17-edc17-checksums-and-the-cvn-signature" title="Permanent link">&para;</a></h2>
+<p>MED17/EDC17 images do not carry a single checksum: the flash is split into
+blocks, each with its own CRC32 (polynomial <code>0x04C11DB7</code>, MSB first), plus a
+customer block and a 1024-bit RSA signature (the CVN the tester reads over OBD).
+The built-in engine parses the TriCore block descriptors, verifies and rewrites
+the block CRCs, and re-derives the customer block. On an unrecognised image it
+reports <code>InvalidFormat</code> and <strong>never writes a byte</strong> — a blind checksum pass over
+a real ECU image would brick it.</p>
+<p>Because the RSA block is recalculated after the block CRCs are corrected, the
+CVN stays consistent with the modified flash instead of exposing the file as
+"modified" to a diagnostic tester.</p>
 <h2 id="built-in-native-checksum-engine">Built-in (native) checksum engine<a class="headerlink" href="#built-in-native-checksum-engine" title="Permanent link">&para;</a></h2>
 <p>The application ships a <strong>config-driven native checksum engine</strong> that needs no
 DLL. The family-to-algorithm mapping is read from

@@ -517,6 +517,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bosch-med17-edc17-checksum-ve-cvn-imzas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bosch MED17 / EDC17 checksum ve CVN imzası
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yerlesik-native-checksum-motoru" class="md-nav__link">
     <span class="md-ellipsis">
       Yerleşik (native) checksum motoru
@@ -850,6 +859,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bosch-med17-edc17-checksum-ve-cvn-imzas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bosch MED17 / EDC17 checksum ve CVN imzası
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yerlesik-native-checksum-motoru" class="md-nav__link">
     <span class="md-ellipsis">
       Yerleşik (native) checksum motoru
@@ -1099,6 +1117,16 @@ okunabilir bir <strong>algoritma ipucuna</strong> eşler. Uygulama iki durumu ay
 </ul>
 <p>Katalog eksikse bu ayrım yapılamaz ve özellik sessizce devre dışı kalır; dışa
 aktarma yine engellenmez.</p>
+<h2 id="bosch-med17-edc17-checksum-ve-cvn-imzas">Bosch MED17 / EDC17 checksum ve CVN imzası<a class="headerlink" href="#bosch-med17-edc17-checksum-ve-cvn-imzas" title="Permanent link">&para;</a></h2>
+<p>MED17/EDC17 imajlarında tek bir checksum yoktur: flash bloklara ayrılır, her bloğun
+kendi CRC32'si (polinom <code>0x04C11DB7</code>, MSB önce) vardır; ayrıca bir customer blok ve
+tarayıcının OBD üzerinden okuduğu 1024 bit RSA imzası (CVN) bulunur. Yerleşik motor
+TriCore blok tanımlayıcılarını çözer, blok CRC'lerini doğrular ve yeniden yazar,
+customer bloğu yeniden türetir. Tanınmayan bir imajda <code>InvalidFormat</code> döner ve
+<strong>tek bayt bile yazmaz</strong> — gerçek bir ECU imajı üzerinde kör bir checksum turu onu
+kullanılamaz hale getirir.</p>
+<p>Blok CRC'leri düzeltildikten sonra RSA bloğu yeniden hesaplandığı için CVN değişen
+flash ile tutarlı kalır; dosya diagnostik cihaza "değiştirilmiş" görünmez.</p>
 <h2 id="yerlesik-native-checksum-motoru">Yerleşik (native) checksum motoru<a class="headerlink" href="#yerlesik-native-checksum-motoru" title="Permanent link">&para;</a></h2>
 <p>Uygulama, DLL'siz çalışan <strong>config-driven native checksum motoruna</strong> sahiptir.
 Aile→algoritma eşlemesi <code>data/ecukb/native_checksums.json</code> dosyasından okunur

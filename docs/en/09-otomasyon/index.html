@@ -577,6 +577,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#debug-rpc-developer-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug RPC (developer channel)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug RPC (developer channel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#map-aware-writing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Map-aware writing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repairing-a-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repairing a map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#datalog" class="md-nav__link">
     <span class="md-ellipsis">
       Datalog
@@ -598,6 +631,15 @@
   <a href="#before-you-script-something" class="md-nav__link">
     <span class="md-ellipsis">
       Before you script something
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-server-for-external-ai-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP server for external AI agents
     </span>
   </a>
   
@@ -778,6 +820,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#debug-rpc-developer-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug RPC (developer channel)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug RPC (developer channel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#map-aware-writing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Map-aware writing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repairing-a-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repairing a map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#datalog" class="md-nav__link">
     <span class="md-ellipsis">
       Datalog
@@ -799,6 +874,15 @@
   <a href="#before-you-script-something" class="md-nav__link">
     <span class="md-ellipsis">
       Before you script something
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-server-for-external-ai-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP server for external AI agents
     </span>
   </a>
   
@@ -864,9 +948,73 @@ decision is stored with the script's SHA-256 fingerprint.</p>
 <p>The Lua checksum DSL, <code>projectImportCsvJson</code>, <code>projectMail</code>, some WinOLS-specific
 rights and vehicle-data operations and encrypted <code>.luax</code> loading are not
 implemented.</p>
+<h2 id="debug-rpc-developer-channel">Debug RPC (developer channel)<a class="headerlink" href="#debug-rpc-developer-channel" title="Permanent link">&para;</a></h2>
+<p>Builds with <code>MTR_DEBUG_RPC=ON</code> open a line-delimited JSON channel on
+<code>127.0.0.1:48714</code>. The channel is meant for automation and testing; it is
+disabled in Release builds.</p>
+<h3 id="map-aware-writing">Map-aware writing<a class="headerlink" href="#map-aware-writing" title="Permanent link">&para;</a></h3>
+<p>The older <code>apply_edit</code> command works on a byte range and uses the <strong>display
+setting's</strong> cell size — on a 16-bit map it truncated the value to a single byte
+and left the high byte at its stale ROM value. The new <code>set_map_values</code> command
+uses the map's <strong>own</strong> cell size, byte order and signedness:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="nt">"cmd"</span><span class="p">:</span><span class="s2">"set_map_values"</span><span class="p">,</span><span class="nt">"args"</span><span class="p">:{</span><span class="nt">"sub"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"map"</span><span class="p">:</span><span class="s2">"Boost target"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="mi">3500</span><span class="p">,</span><span class="nt">"absolute"</span><span class="p">:</span><span class="kc">true</span><span class="p">}}</span>
+</code></pre></div>
+<p>The response contains the raw bytes that were written, so the write can be
+verified:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span><span class="nt">"ok"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">"result"</span><span class="p">:{</span><span class="nt">"raw"</span><span class="p">:</span><span class="s2">"F5 24"</span><span class="p">,</span><span class="nt">"bytesWritten"</span><span class="p">:</span><span class="s2">"F5 24"</span><span class="p">,</span><span class="nt">"dataSize"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w"> </span><span class="nt">"byteOrder"</span><span class="p">:</span><span class="s2">"little-endian"</span><span class="p">,</span><span class="nt">"signed"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">"cellCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">}}</span>
+</code></pre></div>
+<p>If the value does not fit the cell the command returns an <strong>error</strong> — there is
+no silent truncation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="nt">"ok"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">"error"</span><span class="p">:</span><span class="s2">"value 40000 does not fit in a 2-byte signed cell"</span><span class="p">}</span>
+</code></pre></div>
+<p>Pass <code>"clamp":true</code> to clamp instead; the result then reports <code>clamped:true</code>.</p>
+<h3 id="repairing-a-map">Repairing a map<a class="headerlink" href="#repairing-a-map" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>map_info</code></td>
+<td>The full map record: <code>dataSize</code>, <code>signed</code>, <code>byteOrder</code>, <code>effectiveByteOrder</code>, scaling</td>
+</tr>
+<tr>
+<td><code>set_map_byte_order</code></td>
+<td>Changes one map's byte order; the global setting is untouched</td>
+</tr>
+<tr>
+<td><code>set_map_scaling</code></td>
+<td>Fixes one map's scaling (<code>coeffA</code>, <code>offset</code>, <code>unit</code>)</td>
+</tr>
+<tr>
+<td><code>action {"trigger":"m_actSave"}</code></td>
+<td>Saves the project</td>
+</tr>
+</tbody>
+</table>
+<p><code>set_map_byte_order</code> and <code>set_map_scaling</code> are persistent: they are written to
+the project file. <code>map_info</code> additionally reports the project byte order
+(<code>projectByteOrder</code>) and the map's own byte order (<code>mapByteOrder</code>) separately;
+when they differ, the map is read with its own order.</p>
 <h2 id="datalog">Datalog<a class="headerlink" href="#datalog" title="Permanent link">&para;</a></h2>
 <p><code>Datalog ▸ Open Log</code> opens CSV recordings; pick channels from the tree and read
 the time-series graphs. <code>Datalog ▸ Compare Logs</code> overlays two recordings.</p>
+<p>Three source formats are recognised automatically:</p>
+<ul>
+<li><strong>Vehical</strong> — three header rows (name / description / unit), first column
+  <code>Time</code> in milliseconds.</li>
+<li><strong>Autotuner</strong> — single header row starting with <code>timestamp</code>, units embedded in
+  the column names as <code>(unit)</code>.</li>
+<li><strong>VCDS (Ross-Tech) measuring-block logs</strong> — every measuring group has its own
+  <code>TIME</code>/<code>STAMP</code> column and samples on its own clock. The groups are merged onto
+  one time axis by linear interpolation, so a VCDS export can be compared against
+  a map directly. European exports write decimal commas; both <code>0.96</code> and <code>0,96</code>
+  are accepted.</li>
+</ul>
 <h2 id="a-practical-order-of-preference-for-bulk-work">A practical order of preference for bulk work<a class="headerlink" href="#a-practical-order-of-preference-for-bulk-work" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Does an external tool already do it?</li>
@@ -881,6 +1029,8 @@ the time-series graphs. <code>Datalog ▸ Compare Logs</code> overlays two recor
 <li>Write a script only for genuinely repetitive multi-step work.</li>
 <li>Keep scripts in version control and comment which map addresses they touch.</li>
 </ol>
+<h2 id="mcp-server-for-external-ai-agents">MCP server for external AI agents<a class="headerlink" href="#mcp-server-for-external-ai-agents" title="Permanent link">&para;</a></h2>
+<p>To delegate automation tasks to external AI agents (Claude Desktop, Claude Code, OpenCode, Cursor, etc.) or automate operations via the command line, use the built-in Model Context Protocol (MCP) server. For details and tool listings, see <a href="../08-ai-asistani/#mcp-server-external-ai-agents">AI assistant — MCP server</a>.</p>
 
 
 

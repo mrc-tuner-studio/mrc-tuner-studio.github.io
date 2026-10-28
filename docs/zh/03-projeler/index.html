@@ -406,6 +406,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#obd-mg1-mevd172g" class="md-nav__link">
+    <span class="md-ellipsis">
+      OBD 解锁（MG1 / MEVD17.2.G）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       版本快照
@@ -703,6 +712,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#obd-mg1-mevd172g" class="md-nav__link">
+    <span class="md-ellipsis">
+      OBD 解锁（MG1 / MEVD17.2.G）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       版本快照
@@ -787,6 +805,15 @@
 <p>工程文件可保存在任意位置。应用在设置中保留最近工程列表，文件本身是可
 移植的。</p>
 </div>
+<h2 id="obd-mg1-mevd172g">OBD 解锁（MG1 / MEVD17.2.G）<a class="headerlink" href="#obd-mg1-mevd172g" title="Permanent link">&para;</a></h2>
+<p><code>工程 ▸ OBD 解锁（MG1）</code> 会针对四种 ECU 变体在已知偏移处执行固定字节替换：
+Gen1 MG1、Gen2 MG1（2020 年前）、Gen2 MG1（2020 年后）以及 MEVD17.2.G。程序先按
+字节特征匹配 ROM；无法识别的映像会被拒绝，已解锁的 ROM 会直接报告为已解锁状态，
+不会重复打补丁。MEVD17.2.G 若发现超过三个补丁点包含意外字节便会中止，因此版本不匹配
+时绝不会盲目写入。</p>
+<p>补丁只修改内存中的 ROM 数据；在你保存或导出之前不会写入磁盘。
+<strong>使用前请确认所在国家/地区的法律限制</strong> —— 禁用 OBD 排放监测在许多司法辖区受到
+限制，并且无法通过排放检测。</p>
 <h2 id="_3">版本快照<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p><code>项目 ▸ 版本快照</code> 把当前完整状态保存为一个命名版本。快照可以：</p>
 <ul>

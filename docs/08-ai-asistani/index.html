@@ -503,6 +503,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Sağlayıcılar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opencode-bridge-ucretsiz-modeller-icin-onerilen-yol" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenCode Bridge — ücretsiz modeller için önerilen yol
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -515,9 +530,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#araclar-61-adet" class="md-nav__link">
+  <a href="#araclar-71-adet" class="md-nav__link">
     <span class="md-ellipsis">
-      Araçlar (61 adet)
+      Araçlar (71 adet)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harita-secimi-ad-veya-adres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harita seçimi: ad veya adres
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayt-sras-ve-olcek" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bayt sırası ve ölçek
     </span>
   </a>
   
@@ -563,6 +596,15 @@
   <a href="#snrlar" class="md-nav__link">
     <span class="md-ellipsis">
       Sınırlar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-sunucusu" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP sunucusu
     </span>
   </a>
   
@@ -709,6 +751,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Sağlayıcılar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opencode-bridge-ucretsiz-modeller-icin-onerilen-yol" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenCode Bridge — ücretsiz modeller için önerilen yol
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -721,9 +778,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#araclar-61-adet" class="md-nav__link">
+  <a href="#araclar-71-adet" class="md-nav__link">
     <span class="md-ellipsis">
-      Araçlar (61 adet)
+      Araçlar (71 adet)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harita-secimi-ad-veya-adres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harita seçimi: ad veya adres
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayt-sras-ve-olcek" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bayt sırası ve ölçek
     </span>
   </a>
   
@@ -774,6 +849,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mcp-sunucusu" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP sunucusu
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -811,8 +895,12 @@ yapacağını yazar ve yazma işlemleri için onayınızı ister.</p>
 <td>Yerel çalışan, anahtar gerektirmez</td>
 </tr>
 <tr>
-<td>OpenCode Zen / Go / Free</td>
+<td>OpenCode Zen / Go</td>
 <td>OpenCode kimlik bilgileriyle çalışır</td>
+</tr>
+<tr>
+<td><strong>OpenCode Bridge</strong></td>
+<td><strong>Önerilen ücretsiz yol</strong> — resmî istemciyi yerel sunucu olarak çalıştırır</td>
 </tr>
 <tr>
 <td>Özel uç nokta</td>
@@ -824,6 +912,40 @@ yapacağını yazar ve yazma işlemleri için onayınızı ister.</p>
 OpenCode için kimlik bilgileri <strong>Import from opencode TUI</strong> düğmesiyle doğrudan
 TUI'dan alınabilir. Modeller sağlayıcıdan canca çekilir, ⟳ düğmesi listeyi
 yeniler.</p>
+<h3 id="opencode-bridge-ucretsiz-modeller-icin-onerilen-yol">OpenCode Bridge — ücretsiz modeller için önerilen yol<a class="headerlink" href="#opencode-bridge-ucretsiz-modeller-icin-onerilen-yol" title="Permanent link">&para;</a></h3>
+<p><code>opencode.ai</code> ücretsiz katmanı, isteğin gerçek OpenCode istemcisinden
+geldiğini doğrular (Cloudflare TLS/JA3-JA4 parmak izi, HTTP/2 çerçeve analizi,
+User-Agent ve istek gövdesindeki araç tanımları). Bu yüzden başlıkları taklit
+etmek işe yaramaz.</p>
+<p><strong>OpenCode Bridge bunu taklit etmek yerine gerçek istemciyi kullanır:</strong>
+resmî <code>opencode</code> ikilisi <code>opencode serve</code> ile arka planda yerel bir HTTP
+sunucusu olarak başlatılır ve uygulama yalnızca <code>127.0.0.1</code> üzerinden onunla
+konuşur. Yukarı akış çağrısını resmî istemci yapar; parmak izi sorunu ortadan
+kalkar.</p>
+<ul>
+<li>Kurulum: <code>npm install -g opencode-ai</code> (uygulama ikiliyi otomatik bulur).</li>
+<li>Kimlik bilgisi gerekmez: giriş bilgileri OpenCode'un kendi kimlik deposunda
+  durur (<code>opencode auth login</code> ile bir kez giriş yapın).</li>
+<li>Köprü, sunucuyu <strong>kendi özel yapılandırmasıyla</strong> başlatır: kullanıcının kendi
+  MCP sunucuları devre dışıdır, yalnızca MRC'nin ROM araç sunucusu kayıtlıdır.
+  Nedeni: ücretsiz katman <strong>128'den fazla araç tanımı</strong> içeren istekleri
+  reddeder; çok sayıda MCP sunucusu kayıtlı bir kurulumda bu sınır anında
+  aşılır ve tüm <code>-free</code> modeller hata verir.</li>
+<li>Sunucu adresi varsayılan <code>http://127.0.0.1:41999</code>; Ayarlar → AI bölümünden
+  değiştirilebilir.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">MCP araçları köprü modunda da çalışır</p>
+<p>Köprü, MRC'nin kendi MCP sunucusunu (<code>mtrmcp.exe</code>, 82 ROM aracı) OpenCode
+yapılandırmasına otomatik kaydeder. Ücretsiz modeller <code>list_maps</code>,
+<code>get_map_values</code>, <code>set_map_values</code>, <code>compare_map_values</code>, <code>scan_dtcs</code> gibi
+araçları doğrudan çağırabilir. Proje açtığınızda araç sunucusu o projeye
+bağlanır; proje değiştirirseniz köprü sunucusu bir sonraki mesajda kendini
+yeniden başlatır ve yeni projeye geçer. Araç sunucusu herhangi bir nedenle
+düşerse (çökme, <code>mtrmcp.exe</code> güncellenmesi, antivirüs) köprü bir sonraki
+mesajda onu otomatik olarak yeniden bağlar; uygulamayı yeniden başlatmanız
+gerekmez.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Veri sınırlarınız</p>
 <p>API anahtarlarınız yalnız makinenizde saklanır. Bir sağlayıcı seçtiğinizde
@@ -853,7 +975,7 @@ yerel bir sağlayıcı (Ollama / LM Studio) kullanın.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="araclar-61-adet">Araçlar (61 adet)<a class="headerlink" href="#araclar-61-adet" title="Permanent link">&para;</a></h2>
+<h2 id="araclar-71-adet">Araçlar (71 adet)<a class="headerlink" href="#araclar-71-adet" title="Permanent link">&para;</a></h2>
 <p>Araçlar beş grupta toplanır:</p>
 <p><strong>Keşif</strong> — harita arama, ada göre listeleme, harita özellikleri, eksenler,
 klasörler, istatistikler.</p>
@@ -865,6 +987,65 @@ sınırlama, yumuşatma, ifade uygulama, harita kopyalama, geri alma.</p>
 sonuçları.</p>
 <p><strong>Planlama</strong> — <code>plan_start</code>, <code>plan_propose</code>, <code>plan_list</code>, <code>plan_remove</code>,
 <code>plan_review</code>, <code>plan_finalize</code>, <code>plan_apply</code>.</p>
+<h2 id="harita-secimi-ad-veya-adres">Harita seçimi: ad veya adres<a class="headerlink" href="#harita-secimi-ad-veya-adres" title="Permanent link">&para;</a></h2>
+<p>Harita araçları (<code>get_map_info</code>, <code>get_map_values</code>, <code>get_original_values</code>,
+<code>get_axis_values</code>, <code>get_map_statistics</code>, <code>set_map_values</code>, …) haritayı iki
+şekilde seçmenizi sağlar:</p>
+<ul>
+<li><code>map_name</code> — harita adı; belirsizse aday listesi döner.</li>
+<li><code>address</code> — <code>0x00009174</code> biçiminde adres; adres benzersizse kesin sonuç verir.</li>
+</ul>
+<p>Ad belirsiz olduğunda araç <code>candidates</code> dizisi döner. Her aday <code>address</code>
+(hex) ve <code>addressDec</code> (sayı) alanlarını taşır, böylece bir sonraki çağrıda
+adresi doğrudan kullanabilirsiniz. Adres biçimi tüm araçlarda aynıdır:
+<code>address</code> daima 8 haneli büyük hex metin, <code>addressDec</code> daima tam sayıdır.</p>
+<h2 id="bayt-sras-ve-olcek">Bayt sırası ve ölçek<a class="headerlink" href="#bayt-sras-ve-olcek" title="Permanent link">&para;</a></h2>
+<p>Bir ROM'da bayt sırası <strong>harita ailesine göre değişebilir</strong>. Araç katmanı
+artık global bayt sırasını değil, haritanın kendi sırasını kullanır
+(<code>MapInfo::cellBigEndian</code>); A2L'de harita başına bayt sırası yoktur, orada
+proje ayarı geçerlidir. Eksen noktaları için de aynı kural geçerlidir.</p>
+<p>Okuma yanıtları doğrulama için zenginleştirilmiştir:</p>
+<table>
+<thead>
+<tr>
+<th>Alan</th>
+<th>Anlamı</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataSize</code></td>
+<td>Hücre boyutu (bayt)</td>
+</tr>
+<tr>
+<td><code>signed</code></td>
+<td>Hücre işaretli mi</td>
+</tr>
+<tr>
+<td><code>effectiveByteOrder</code></td>
+<td>Okumada fiilen kullanılan bayt sırası</td>
+</tr>
+<tr>
+<td><code>raw</code></td>
+<td>Ham hücre baytları (<code>"6F 6F"</code>)</td>
+</tr>
+<tr>
+<td><code>scaling</code></td>
+<td>Ölçek: <code>coeffA</code>, <code>offset</code>, <code>formula</code>, <code>unit</code></td>
+</tr>
+<tr>
+<td><code>scalingKnown</code></td>
+<td>Ölçek tanımı var mı</td>
+</tr>
+<tr>
+<td><code>valuesAreRaw</code></td>
+<td>Ölçek yoksa değerler ham depolama tamsayısıdır</td>
+</tr>
+</tbody>
+</table>
+<p><code>scalingKnown</code> false ise <code>values</code> alanı <strong>fiziksel birim değildir</strong>; ham
+depolama tamsayılarıdır ve yanıt bunu <code>note</code> alanında açıkça belirtir.
+Böylece "°C yerine derece" gibi birim kaymaları sessizce olmaz.</p>
 <h2 id="plan-once-aks">Plan-önce akışı<a class="headerlink" href="#plan-once-aks" title="Permanent link">&para;</a></h2>
 <p>Büyük değişikliklerde asistanı <code>Plan</code> moduna alın. Model sırasıyla:</p>
 <ol>
@@ -905,8 +1086,26 @@ Geçmiş panelinden önceki oturumlara dönebilirsiniz.</p>
 <li>Asistan yalnızca açık projenin verisine erişir; dosya sisteminde keyfî
   gezinmez.</li>
 <li>Yazma araçları doğrulama katmanlarını atlayamaz.</li>
+<li>AI'ın yaptığı her değişiklik <strong>Ctrl+Z ile geri alınabilir</strong>: her yazma
+  işlemi geri alınabilir bir ROM kaydı bırakır. Sol paneldeki <strong>Modified</strong>
+  filtresi ve "Mod (N)" sayacı değişiklikten hemen sonra güncellenir — programı
+  yeniden başlatmanız gerekmez.</li>
 <li>Bir emniyet veya emisyon testini geçeceğini <strong>garanti edemez</strong> — ölçüm
   yapmadan karar vermeyin.</li>
+</ul>
+<h2 id="mcp-sunucusu">MCP sunucusu<a class="headerlink" href="#mcp-sunucusu" title="Permanent link">&para;</a></h2>
+<p>MRC Tuner Studio, <code>mtrmcp.exe</code> adlı bir <strong>Model Context Protocol (MCP)</strong> sunucusu içerir. Claude Desktop, Claude Code, OpenCode, Cursor gibi harici AI ajanları bu sunucu üzerinden ROM motoruna doğrudan bağlanabilir.</p>
+<ul>
+<li><strong>Menü erişimi:</strong> <code>AI ▸ MCP Server &amp; AI Integrations (Claude, OpenCode)…</code></li>
+<li><strong>Diyalog yönetimi:</strong> Sunucuyu tek tıkla başlatıp durdurabilir, canlı logları izleyebilir, Claude Desktop, Claude Code ve OpenCode için otomatik yapılandırma yapabilir veya genel JSON snippet'ini kopyalayabilirsiniz.</li>
+<li><strong>82 araç:</strong> Harita listeleme/okuma/yazma, ROM bayt arama/değiştirme, DTC tarama (<code>scan_dtcs</code>) ve DTC kapatma/açma (<code>set_dtc_status</code>), checksum doğrulama (<code>verify_checksums</code>), otomatik harita tarama (<code>scan_rom_maps</code>), sürüm anlık görüntüleri ve plan-önce akışı dahil olmak üzere zengin bir araç seti sunulur.</li>
+<li><strong>Yapılandırılmış yanıt:</strong> Her yanıt <code>structuredContent</code> alanında gerçek bir JSON nesnesi taşır. İstemci <code>text</code> içindeki JSON metnini ikinci kez ayrıştırmak zorunda kalmaz.</li>
+<li><strong>Yazma politikası:</strong> <code>--bypass-dialogs</code> (varsayılan) yazma araçlarını doğrudan uygular ve <strong>hiçbir modal pencere açmaz</strong>. <code>--confirm</code> ise yazmayı uygulamaz; <code>{"status":"confirmation_required"}</code> döner ve ROM'a dokunulmaz. <code>--read-only</code> yazma araçlarını listelemez.</li>
+<li><strong>Salt-okunur güvencesi:</strong> Kapsam artık günlük defteri yazımı (<code>append_tuning_note</code>, <code>log_dyno_result</code>), checksum düzeltme (<code>verify_checksums</code> + <code>correct</code>), ROM tarama, hedef ROM seçimi ve proje kapatma gibi kenar durumlarını da içerir.</li>
+<li><strong>Geri al / yinele / durum:</strong> <code>undo_last_change</code>, <code>redo</code> ve <code>project_status</code> araçları proje durumunu ve geçmişi yönetir; <code>project_status</code> değişen harita sayısını da bildirir.</li>
+<li><strong>Klasörler yapılandırılmıştır:</strong> <code>list_folders</code> ve <code>get_folder_maps</code> her klasör için <code>key</code>, <code>description</code> ve <code>parent</code> alanlarını ayrı ayrı döner; <code>KEY: "açıklama"</code> biçimindeki bileşik adı ayrıştırmanız gerekmez. Harita listeleme/okuma/yazma, ROM bayt arama/değiştirme, DTC tarama (<code>scan_dtcs</code>) ve DTC kapatma/açma (<code>set_dtc_status</code>), checksum doğrulama (<code>verify_checksums</code>), otomatik harita tarama (<code>scan_rom_maps</code>), sürüm anlık görüntüleri ve plan-önce akışı dahil olmak üzere zengin bir araç seti sunulur.</li>
+<li><strong>Güvenlik:</strong> Diyalogdaki "Salt-okunur mod" varsayılan olarak AÇIKTIR; yazma araçları harici ajana hiç listelenmez ve doğrudan çağrılırsa reddedilir. Yazma modunda ise her değişiklikten önce geri alınabilir otomatik bir sürüm anlık görüntüsü kaydedilir.</li>
+<li><strong>Elle çalıştırma:</strong> Komut satırından <code>mtrmcp.exe --project &lt;dosya.mtrp&gt;</code> veya salt-okunur mod için <code>mtrmcp.exe --read-only</code> parametresiyle çalıştırılabilir.</li>
 </ul>
 
 

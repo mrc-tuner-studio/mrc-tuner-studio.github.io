@@ -577,6 +577,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#debug-rpc-gelistirici-kanal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug RPC (geliştirici kanalı)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug RPC (geliştirici kanalı)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#harita-farknda-yazma" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harita-farkında yazma
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#harita-onarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harita onarımı
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#datalog" class="md-nav__link">
     <span class="md-ellipsis">
       Datalog
@@ -598,6 +631,15 @@
   <a href="#makro-dusunurken" class="md-nav__link">
     <span class="md-ellipsis">
       Makro düşünürken
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harici-ai-ajanlar-icin-mcp-sunucusu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harici AI ajanları için MCP sunucusu
     </span>
   </a>
   
@@ -778,6 +820,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#debug-rpc-gelistirici-kanal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug RPC (geliştirici kanalı)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug RPC (geliştirici kanalı)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#harita-farknda-yazma" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harita-farkında yazma
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#harita-onarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harita onarımı
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#datalog" class="md-nav__link">
     <span class="md-ellipsis">
       Datalog
@@ -799,6 +874,15 @@
   <a href="#makro-dusunurken" class="md-nav__link">
     <span class="md-ellipsis">
       Makro düşünürken
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harici-ai-ajanlar-icin-mcp-sunucusu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harici AI ajanları için MCP sunucusu
     </span>
   </a>
   
@@ -863,10 +947,72 @@ kararı betiğin SHA-256 parmak iziyle saklanır.</p>
 <h3 id="bilinen-bosluklar">Bilinen boşluklar<a class="headerlink" href="#bilinen-bosluklar" title="Permanent link">&para;</a></h3>
 <p>Lua checksum DSL, <code>projectImportCsvJson</code>, <code>projectMail</code>, bazı WinOLS'a özgü
 sağlık/araç verisi işlemleri ve şifreli <code>.luax</code> yükleme uygulanmamıştır.</p>
+<h2 id="debug-rpc-gelistirici-kanal">Debug RPC (geliştirici kanalı)<a class="headerlink" href="#debug-rpc-gelistirici-kanal" title="Permanent link">&para;</a></h2>
+<p><code>MTR_DEBUG_RPC=ON</code> ile derlenen sürümlerde uygulama <code>127.0.0.1:48714</code>
+üzerinde satır ayrımlı JSON bir kanal açar. Kanal otomasyon ve test için
+tasarlanmıştır; Release sürümlerinde kapalıdır.</p>
+<h3 id="harita-farknda-yazma">Harita-farkında yazma<a class="headerlink" href="#harita-farknda-yazma" title="Permanent link">&para;</a></h3>
+<p>Eski <code>apply_edit</code> komutu bayt aralığı üzerinde çalışır ve <strong>görüntü ayarındaki</strong>
+hücre boyutunu kullanır — 16-bit bir haritada değeri tek bayta kırpıp üst baytı
+ROM'daki eski değerden bırakırdı. Yeni <code>set_map_values</code> komutu haritanın
+<strong>kendi</strong> hücre boyutunu, bayt sırasını ve işaret bilgisini kullanır:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="nt">"cmd"</span><span class="p">:</span><span class="s2">"set_map_values"</span><span class="p">,</span><span class="nt">"args"</span><span class="p">:{</span><span class="nt">"sub"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"map"</span><span class="p">:</span><span class="s2">"Boost target"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="mi">3500</span><span class="p">,</span><span class="nt">"absolute"</span><span class="p">:</span><span class="kc">true</span><span class="p">}}</span>
+</code></pre></div>
+<p>Yanıt yazılan ham baytları içerir, böylece yazma doğrulanabilir:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span><span class="nt">"ok"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">"result"</span><span class="p">:{</span><span class="nt">"raw"</span><span class="p">:</span><span class="s2">"F5 24"</span><span class="p">,</span><span class="nt">"bytesWritten"</span><span class="p">:</span><span class="s2">"F5 24"</span><span class="p">,</span><span class="nt">"dataSize"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w"> </span><span class="nt">"byteOrder"</span><span class="p">:</span><span class="s2">"little-endian"</span><span class="p">,</span><span class="nt">"signed"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">"cellCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">}}</span>
+</code></pre></div>
+<p>Değer hücreye sığmıyorsa <strong>hata</strong> döner — sessiz kırpma yoktur:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="nt">"ok"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">"error"</span><span class="p">:</span><span class="s2">"value 40000 does not fit in a 2-byte signed cell"</span><span class="p">}</span>
+</code></pre></div>
+<p><code>"clamp":true</code> ile değer sınıra kırpılır ve <code>clamped:true</code> bildirilir.</p>
+<h3 id="harita-onarm">Harita onarımı<a class="headerlink" href="#harita-onarm" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Komut</th>
+<th>İş</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>map_info</code></td>
+<td>Haritanın tam kaydı: <code>dataSize</code>, <code>signed</code>, <code>byteOrder</code>, <code>effectiveByteOrder</code>, ölçek</td>
+</tr>
+<tr>
+<td><code>set_map_byte_order</code></td>
+<td>Tek haritanın bayt sırasını değiştirir; global ayara dokunmaz</td>
+</tr>
+<tr>
+<td><code>set_map_scaling</code></td>
+<td>Tek haritanın ölçeğini (<code>coeffA</code>, <code>offset</code>, <code>unit</code>) düzeltir</td>
+</tr>
+<tr>
+<td><code>action {"trigger":"m_actSave"}</code></td>
+<td>Projeyi kaydeder</td>
+</tr>
+</tbody>
+</table>
+<p><code>set_map_byte_order</code> ve <code>set_map_scaling</code> kalıcıdır: proje dosyasına yazılır.
+<code>map_info</code> ayrıca proje bayt sırasını (<code>projectByteOrder</code>) ve haritanın kendi
+bayt sırasını (<code>mapByteOrder</code>) ayrı ayrı bildirir; ikisi farklıysa harita
+kendi sırasıyla okunur.</p>
 <h2 id="datalog">Datalog<a class="headerlink" href="#datalog" title="Permanent link">&para;</a></h2>
 <p><code>Datalog ▸ Datalog Aç</code> ile CSV biçimindeki kayıtları açın; kanal ağacından
 seri seçip zaman serisi grafiklerini inceleyin. <code>Datalogları Karşılaştır</code> iki
 kaydı üst üste gösterir.</p>
+<p>Üç kaynak biçimi otomatik tanınır:</p>
+<ul>
+<li><strong>Vehical</strong> — üç başlık satırı (ad / açıklama / birim), ilk sütun milisaniye
+  cinsinden <code>Time</code>.</li>
+<li><strong>Autotuner</strong> — <code>timestamp</code> ile başlayan tek başlık satırı, birimler sütun
+  adlarında <code>(birim)</code> olarak gömülü.</li>
+<li><strong>VCDS (Ross-Tech) ölçüm bloğu kayıtları</strong> — her ölçüm grubunun kendi
+  <code>TIME</code>/<code>STAMP</code> sütunu vardır ve gruplar kendi saatlerinde örnekler. Gruplar
+  doğrusal interpolasyonla tek zaman eksenine birleştirilir; böylece bir VCDS
+  kaydı doğrudan haritayla karşılaştırılabilir. Avrupa çıktılarında ondalık
+  ayırıcı virgüldür; hem <code>0.96</code> hem <code>0,96</code> kabul edilir.</li>
+</ul>
 <h2 id="toplu-isler-icin-pratik-oneri">Toplu işler için pratik öneri<a class="headerlink" href="#toplu-isler-icin-pratik-oneri" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Aynı ham işi yapmayın: <strong>paketleyin</strong> (bkz. <a href="../07-paketleme/">Paketleme</a>).</li>
@@ -882,6 +1028,8 @@ kaydı üst üste gösterir.</p>
 <li><strong>Komut paleti</strong> tek adımda çözüyor mu?</li>
 <li>Ancak o zaman <strong>Lua</strong> betiği yazın.</li>
 </ol>
+<h2 id="harici-ai-ajanlar-icin-mcp-sunucusu">Harici AI ajanları için MCP sunucusu<a class="headerlink" href="#harici-ai-ajanlar-icin-mcp-sunucusu" title="Permanent link">&para;</a></h2>
+<p>Otomasyon görevlerini harici yapay zeka ajanlarına (Claude Desktop, Claude Code, OpenCode, Cursor vb.) devretmek veya komut satırından çalıştırmak için uygulamanın Model Context Protocol (MCP) sunucusunu kullanabilirsiniz. Ayrıntılı bilgi ve araç listesi için bkz. <a href="../08-ai-asistani/#mcp-sunucusu">AI asistanı — MCP sunucusu</a>.</p>
 
 
 

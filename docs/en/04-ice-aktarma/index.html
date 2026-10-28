@@ -471,6 +471,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ols-map-pack-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLS map pack (.json)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vag-containers-frf-sgo-odx" class="md-nav__link">
     <span class="md-ellipsis">
       VAG containers (.frf, .sgo, .odx)
@@ -766,6 +775,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ols-map-pack-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLS map pack (.json)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vag-containers-frf-sgo-odx" class="md-nav__link">
     <span class="md-ellipsis">
       VAG containers (.frf, .sgo, .odx)
@@ -896,7 +914,18 @@ be open</strong> before importing. The application</p>
 <p>Legacy 4.x packs do not always store dimensions; the application recovers
 columns × rows by matching the product against the cell count.</p>
 <h2 id="tunerpro-xdf">TunerPro (<code>.xdf</code>)<a class="headerlink" href="#tunerpro-xdf" title="Permanent link">&para;</a></h2>
-<p><code>.xdf</code> definition files can be imported and exported.</p>
+<p><code>.xdf</code> definition files can be imported and exported. On import the
+<code>mmedtypeflags</code> attribute is decoded, so signed, little-endian and floating
+point tables are read the way the definition declares them. The <code>BASEOFFSET</code>
+direction follows its <code>subtract</code> attribute (split 512K/64K definitions use the
+additive form).</p>
+<h2 id="ols-map-pack-json">OLS map pack (<code>.json</code>)<a class="headerlink" href="#ols-map-pack-json" title="Permanent link">&para;</a></h2>
+<p><code>.json</code> map packs produced by WinOLS's "OLS-Files" exporter are read with
+<code>Project ▸ Import ▸ OLS map pack (JSON)</code>. A pack carries map definitions only
+(address, size, axes, scaling, folder) and no ROM bytes, so it is layered on top
+of an open ROM. The same definitions can be written back with
+<code>Project ▸ Export ▸ OLS map pack (JSON)</code> to move the map structure to another
+WinOLS installation.</p>
 <h2 id="vag-containers-frf-sgo-odx">VAG containers (<code>.frf</code>, <code>.sgo</code>, <code>.odx</code>)<a class="headerlink" href="#vag-containers-frf-sgo-odx" title="Permanent link">&para;</a></h2>
 <p><code>.frf</code>, <code>.sgo</code>, <code>.odx</code> and <code>.zip</code> files containing them are supported. Encrypted
 content requires an external 32-byte AES key/IV file.</p>

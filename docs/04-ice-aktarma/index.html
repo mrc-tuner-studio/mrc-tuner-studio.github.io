@@ -471,6 +471,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ols-harita-paketi-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLS harita paketi (.json)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vag-kapsayclar-frf-sgo-odx" class="md-nav__link">
     <span class="md-ellipsis">
       VAG kapsayıcıları (.frf, .sgo, .odx)
@@ -766,6 +775,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ols-harita-paketi-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLS harita paketi (.json)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vag-kapsayclar-frf-sgo-odx" class="md-nav__link">
     <span class="md-ellipsis">
       VAG kapsayıcıları (.frf, .sgo, .odx)
@@ -894,7 +912,17 @@ sürümler tek projeye alınır.</p>
 <p>Eski 4.x paketlerinde boyutlar açıkça saklanmayabilir; uygulama sütun × satır
 boyutunu hücre sayısıyla eşleşecek şekilde geri çözer.</p>
 <h2 id="tunerpro-xdf">TunerPro (<code>.xdf</code>)<a class="headerlink" href="#tunerpro-xdf" title="Permanent link">&para;</a></h2>
-<p><code>.xdf</code> tanım dosyaları içe aktarılabilir ve dışa aktarılabilir.</p>
+<p><code>.xdf</code> tanım dosyaları içe aktarılabilir ve dışa aktarılabilir. İçe aktarmada
+<code>mmedtypeflags</code> yorumlanır: işaretli, little-endian ve kayan noktalı tablolar
+tanımda yazdığı gibi okunur. <code>BASEOFFSET</code> yönü <code>subtract</code> özniteliğine göre
+uygulanır (bölünmüş 512K/64K tanımları toplamalı biçimi kullanır).</p>
+<h2 id="ols-harita-paketi-json">OLS harita paketi (<code>.json</code>)<a class="headerlink" href="#ols-harita-paketi-json" title="Permanent link">&para;</a></h2>
+<p>WinOLS'ün "OLS-Files" dışa aktarıcısının ürettiği <code>.json</code> harita paketleri
+<code>Proje ▸ İçe Aktar ▸ OLS harita paketi (JSON)</code> ile okunur. Paket yalnızca
+harita tanımları taşır (adres, boyut, eksen, ölçekleme, klasör), ROM baytı
+içermez; bu yüzden ROM'u açık bir projenin üzerine eklenir. Aynı tanımlar
+<code>Proje ▸ Dışa Aktar ▸ OLS harita paketi (JSON)</code> ile geri yazılabilir, böylece
+harita yapısı başka bir WinOLS kurulumuna taşınabilir.</p>
 <h2 id="vag-kapsayclar-frf-sgo-odx">VAG kapsayıcıları (<code>.frf</code>, <code>.sgo</code>, <code>.odx</code>)<a class="headerlink" href="#vag-kapsayclar-frf-sgo-odx" title="Permanent link">&para;</a></h2>
 <p><code>.frf</code>, <code>.sgo</code>, <code>.odx</code> ve bunları içeren <code>.zip</code> dosyaları desteklenir. Şifreli
 içerikler için dışarıdan 32 baytlık AES anahtar/IV dosyası sağlamanız gerekir.</p>

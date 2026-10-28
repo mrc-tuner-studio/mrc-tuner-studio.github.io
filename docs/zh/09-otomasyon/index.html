@@ -577,6 +577,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#debug-rpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug RPC（开发者通道）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug RPC（开发者通道）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      按地图写入
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      修复地图
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#datalog" class="md-nav__link">
     <span class="md-ellipsis">
       Datalog
@@ -586,7 +619,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       批量工作的优先顺序
     </span>
@@ -595,9 +628,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       写脚本之前
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      用于外部 AI 智能体的 MCP 服务器
     </span>
   </a>
   
@@ -778,6 +820,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#debug-rpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug RPC（开发者通道）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug RPC（开发者通道）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      按地图写入
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      修复地图
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#datalog" class="md-nav__link">
     <span class="md-ellipsis">
       Datalog
@@ -787,7 +862,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       批量工作的优先顺序
     </span>
@@ -796,9 +871,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       写脚本之前
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      用于外部 AI 智能体的 MCP 服务器
     </span>
   </a>
   
@@ -859,22 +943,79 @@
 <h3 id="_6">已知空白<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>Lua checksum DSL、<code>projectImportCsvJson</code>、<code>projectMail</code>、部分 WinOLS 专有的
 权限与车辆数据操作，以及加密的 <code>.luax</code> 加载均未实现。</p>
+<h2 id="debug-rpc">Debug RPC（开发者通道）<a class="headerlink" href="#debug-rpc" title="Permanent link">&para;</a></h2>
+<p>以 <code>MTR_DEBUG_RPC=ON</code> 编译的版本会在 <code>127.0.0.1:48714</code> 上开启一个按行分隔的
+JSON 通道。该通道用于自动化与测试；Release 版本中关闭。</p>
+<h3 id="_7">按地图写入<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>较早的 <code>apply_edit</code> 命令工作在字节区间上，并使用<strong>显示设置</strong>的单元大小——
+在 16 位地图上会把数值截断为单字节，高字节则保留 ROM 中的旧值。新的
+<code>set_map_values</code> 命令使用地图<strong>自身</strong>的单元大小、字节序和符号属性：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="nt">"cmd"</span><span class="p">:</span><span class="s2">"set_map_values"</span><span class="p">,</span><span class="nt">"args"</span><span class="p">:{</span><span class="nt">"sub"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"map"</span><span class="p">:</span><span class="s2">"Boost target"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="mi">3500</span><span class="p">,</span><span class="nt">"absolute"</span><span class="p">:</span><span class="kc">true</span><span class="p">}}</span>
+</code></pre></div>
+<p>响应中包含实际写入的原始字节，因此写入结果可被校验：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span><span class="nt">"ok"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">"result"</span><span class="p">:{</span><span class="nt">"raw"</span><span class="p">:</span><span class="s2">"F5 24"</span><span class="p">,</span><span class="nt">"bytesWritten"</span><span class="p">:</span><span class="s2">"F5 24"</span><span class="p">,</span><span class="nt">"dataSize"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w"> </span><span class="nt">"byteOrder"</span><span class="p">:</span><span class="s2">"little-endian"</span><span class="p">,</span><span class="nt">"signed"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">"cellCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">}}</span>
+</code></pre></div>
+<p>若数值无法放入该单元，命令返回<strong>错误</strong>——不存在静默截断：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="nt">"ok"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">"error"</span><span class="p">:</span><span class="s2">"value 40000 does not fit in a 2-byte signed cell"</span><span class="p">}</span>
+</code></pre></div>
+<p>传入 <code>"clamp":true</code> 则截断到边界，结果中会报告 <code>clamped:true</code>。</p>
+<h3 id="_8">修复地图<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>map_info</code></td>
+<td>地图完整记录：<code>dataSize</code>、<code>signed</code>、<code>byteOrder</code>、<code>effectiveByteOrder</code>、标定</td>
+</tr>
+<tr>
+<td><code>set_map_byte_order</code></td>
+<td>修改单个地图的字节序；不影响全局设置</td>
+</tr>
+<tr>
+<td><code>set_map_scaling</code></td>
+<td>修正单个地图的标定（<code>coeffA</code>、<code>offset</code>、<code>unit</code>）</td>
+</tr>
+<tr>
+<td><code>action {"trigger":"m_actSave"}</code></td>
+<td>保存工程</td>
+</tr>
+</tbody>
+</table>
+<p><code>set_map_byte_order</code> 与 <code>set_map_scaling</code> 是持久的：会写入工程文件。<code>map_info</code>
+还会分别报告工程字节序（<code>projectByteOrder</code>）与地图自身字节序
+（<code>mapByteOrder</code>）；两者不同时，地图按自身字节序读取。</p>
 <h2 id="datalog">Datalog<a class="headerlink" href="#datalog" title="Permanent link">&para;</a></h2>
 <p><code>Datalog ▸ 打开 log</code> 可打开 CSV 记录，在通道树中选择信号并查看时间序列曲线。
 <code>Datalog ▸ 对比 log</code> 可叠加比较两段记录。</p>
-<h2 id="_7">批量工作的优先顺序<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>可自动识别三种来源格式：</p>
+<ul>
+<li><strong>Vehical</strong> —— 三行表头（名称 / 描述 / 单位），首列为毫秒单位的 <code>Time</code>。</li>
+<li><strong>Autotuner</strong> —— 单行表头以 <code>timestamp</code> 开头，单位以 <code>(单位)</code> 形式内嵌在列名中。</li>
+<li><strong>VCDS（Ross-Tech）测量块记录</strong> —— 每个测量组都有自己的 <code>TIME</code>/<code>STAMP</code> 列，
+  并按各自的时钟采样。各组会通过线性插值合并到同一时间轴，因此 VCDS 导出可直接
+  与映射表比较。欧洲导出的记录使用小数逗号，<code>0.96</code> 与 <code>0,96</code> 均可解析。</li>
+</ul>
+<h2 id="_9">批量工作的优先顺序<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ol>
 <li>外部工具是否已经能做？</li>
 <li>应用的<strong>打包</strong>功能是否足够？</li>
 <li><strong>命令面板</strong>能否一步解决？</li>
 <li>只有这时才写 <strong>Lua</strong> 脚本。</li>
 </ol>
-<h2 id="_8">写脚本之前<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_10">写脚本之前<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ol>
 <li>不要把手工劳动重复下去：先<strong>打包</strong>（见<a href="../07-paketleme/">打包</a>）。</li>
 <li>只为真正重复的多步骤工作写脚本。</li>
 <li>把脚本纳入版本控制，并注释它涉及的标定图地址。</li>
 </ol>
+<h2 id="ai-mcp">用于外部 AI 智能体的 MCP 服务器<a class="headerlink" href="#ai-mcp" title="Permanent link">&para;</a></h2>
+<p>若要将自动化任务委托给外部 AI 智能体（Claude Desktop、Claude Code、OpenCode、Cursor 等）或通过命令行执行，可使用内置的 Model Context Protocol (MCP) 服务器。详细信息与工具列表请参阅 <a href="../08-ai-asistani/#mcp">AI 助手 — MCP 服务器</a>.</p>
 
 
 

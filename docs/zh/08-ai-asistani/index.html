@@ -503,6 +503,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="提供方">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opencode-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenCode Bridge —— 使用免费模型的推荐方式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -515,9 +530,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#61" class="md-nav__link">
+  <a href="#71" class="md-nav__link">
     <span class="md-ellipsis">
-      工具（共 61 个）
+      工具（共 71 个）
     </span>
   </a>
   
@@ -563,6 +578,33 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       限制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      按名称或地址选择地图
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      字节序与标定
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP 服务器
     </span>
   </a>
   
@@ -709,6 +751,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="提供方">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opencode-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenCode Bridge —— 使用免费模型的推荐方式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -721,9 +778,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#61" class="md-nav__link">
+  <a href="#71" class="md-nav__link">
     <span class="md-ellipsis">
-      工具（共 61 个）
+      工具（共 71 个）
     </span>
   </a>
   
@@ -774,6 +831,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      按名称或地址选择地图
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      字节序与标定
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP 服务器
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -810,7 +894,7 @@
 <td>本地运行，无需密钥</td>
 </tr>
 <tr>
-<td>OpenCode Zen / Go / Free</td>
+<td>OpenCode Zen / Go</td>
 <td>使用 OpenCode 凭据</td>
 </tr>
 <tr>
@@ -822,6 +906,31 @@
 <p>在设置（<code>设置 ▸ AI</code>）中选择密钥、基础地址与模型。OpenCode 的凭据可以通过
 <strong>Import from opencode TUI</strong> 直接从 TUI 导入。模型列表从提供方实时获取，
 用 ⟳ 按钮刷新。</p>
+<h3 id="opencode-bridge">OpenCode Bridge —— 使用免费模型的推荐方式<a class="headerlink" href="#opencode-bridge" title="Permanent link">&para;</a></h3>
+<p><code>opencode.ai</code> 免费层会验证请求是否真正来自官方 OpenCode 客户端（Cloudflare
+TLS/JA3-JA4 指纹、HTTP/2 帧分析、User-Agent 以及请求体中的工具声明）。
+因此伪造请求头是无效的。</p>
+<p><strong>OpenCode Bridge 不进行伪造，而是直接使用真正的客户端。</strong> 官方 <code>opencode</code>
+二进制文件以后台方式启动为本地 HTTP 服务器（<code>opencode serve</code>），应用程序
+只通过 <code>127.0.0.1</code> 与它通信。上游调用由官方客户端发起，指纹问题随之消失。</p>
+<ul>
+<li>安装：<code>npm install -g opencode-ai</code>（应用会自动查找该二进制文件）。</li>
+<li>无需凭据：登录信息保存在 OpenCode 自己的凭据库中（只需运行一次
+  <code>opencode auth login</code>）。</li>
+<li>桥接器使用<strong>自己的私有配置</strong>启动服务器：禁用用户自己的 MCP 服务器，只注册
+  MRC 的 ROM 工具服务器。原因是免费层会拒绝携带<strong>超过 128 个工具定义</strong>的请求，
+  而注册了多个 MCP 服务器的环境会立即超出该限制，导致所有 <code>-free</code> 模型失败。</li>
+<li>默认地址 <code>http://127.0.0.1:41999</code>，可在“设置 → AI”中修改。</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">桥接模式下 MCP 工具同样可用</p>
+<p>桥接器会自动把 MRC 自己的 MCP 服务器（<code>mtrmcp.exe</code>，82 个 ROM 工具）注册到
+OpenCode 配置中。免费模型可以直接调用 <code>list_maps</code>、<code>get_map_values</code>、
+<code>set_map_values</code>、<code>compare_map_values</code>、<code>scan_dtcs</code> 等工具。打开工程后工具
+服务器会绑定到该工程；切换工程后，桥接器会在下一条消息时重启服务器，让工具
+跟随新工程。如果工具服务器意外退出（崩溃、<code>mtrmcp.exe</code> 重新编译、杀毒软件
+拦截），桥接器会在下一条消息时自动重新连接，无需重启应用程序。</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">你的数据边界</p>
 <p>API 密钥只保存在你的机器上。选择某个提供方后，对话内容与工具结果会发送
@@ -850,7 +959,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="61">工具（共 61 个）<a class="headerlink" href="#61" title="Permanent link">&para;</a></h2>
+<h2 id="71">工具（共 71 个）<a class="headerlink" href="#71" title="Permanent link">&para;</a></h2>
 <p>分为五组：</p>
 <p><strong>发现</strong> —— 标定图搜索、按名列出、标定图属性、坐标轴、分组、统计。</p>
 <p><strong>读取</strong> —— 当前值与原厂值、原始 ROM 读取、相似性搜索、异常检测、形状分析。</p>
@@ -870,8 +979,10 @@
 </ol>
 <p>应用在执行前会创建快照，并且只有通过下列检查才会写入任何一个字节：</p>
 <ul>
-<li>缩放与字节序校验，</li>
-<li>物理值范围限制，拒绝 <code>NaN</code> / 无穷值，</li>
+<li>写入工具无法绕过验证层。</li>
+<li>AI 做出的每次修改都可以用 <strong>Ctrl+Z 撤销</strong>：每次写入都会留下一条可回退的
+  ROM 记录。左侧面板的 <strong>Modified</strong> 过滤器与 “Mod (N)” 计数会立即更新，无需
+  重启程序。* 物理值范围限制，拒绝 <code>NaN</code> / 无穷值，</li>
 <li>拒绝 0.5–3.0 之外的缩放系数，</li>
 <li>标定图尺寸与目标 ROM 大小是否匹配。</li>
 </ul>
@@ -894,6 +1005,75 @@
 <li>助手只能访问当前打开工程的数据；不会在文件系统中随意浏览。</li>
 <li>写入工具无法绕过校验层。</li>
 <li>它<strong>无法保证</strong>通过安全或排放测试 —— 不测量就不要下结论。</li>
+</ul>
+<h2 id="_8">按名称或地址选择地图<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>地图工具（<code>get_map_info</code>、<code>get_map_values</code>、<code>get_original_values</code>、
+<code>get_axis_values</code>、<code>get_map_statistics</code>、<code>set_map_values</code> 等）支持两种选择方式：</p>
+<ul>
+<li><code>map_name</code> — 地图名称；若存在重名则返回候选列表。</li>
+<li><code>address</code> — 形如 <code>0x00009174</code> 的地址；地址唯一时结果精确。</li>
+</ul>
+<p>名称不明确时，工具返回 <code>candidates</code> 数组。每个候选都带有 <code>address</code>（十六进制）
+与 <code>addressDec</code>（数值）字段，因此下一次调用可直接使用地址。所有工具的地址
+格式完全一致：<code>address</code> 始终为 8 位大写十六进制字符串，<code>addressDec</code> 始终为整数。</p>
+<h2 id="_9">字节序与标定<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>同一个 ROM 中，<strong>不同地图族</strong>的字节序可能不同。工具层不再使用全局字节序，
+而是使用地图自身的字节序（<code>MapInfo::cellBigEndian</code>）。A2L 不携带逐地图字节序，
+此时适用项目设置。坐标轴点遵循相同规则。</p>
+<p>读取响应已扩充，便于校验：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataSize</code></td>
+<td>单元字节数</td>
+</tr>
+<tr>
+<td><code>signed</code></td>
+<td>单元是否为有符号</td>
+</tr>
+<tr>
+<td><code>effectiveByteOrder</code></td>
+<td>读取实际使用的字节序</td>
+</tr>
+<tr>
+<td><code>raw</code></td>
+<td>原始单元字节（<code>"6F 6F"</code>）</td>
+</tr>
+<tr>
+<td><code>scaling</code></td>
+<td>标定：<code>coeffA</code>、<code>offset</code>、<code>formula</code>、<code>unit</code></td>
+</tr>
+<tr>
+<td><code>scalingKnown</code></td>
+<td>是否存在标定定义</td>
+</tr>
+<tr>
+<td><code>valuesAreRaw</code></td>
+<td>无标定时数值为原始存储整数</td>
+</tr>
+</tbody>
+</table>
+<p>当 <code>scalingKnown</code> 为 false 时，<code>values</code> <strong>不是物理单位</strong>，而是原始存储整数，
+响应会在 <code>note</code> 中明确说明。这样“摄氏度被当成度”这类单位错位不会被悄悄忽略。</p>
+<h2 id="mcp">MCP 服务器<a class="headerlink" href="#mcp" title="Permanent link">&para;</a></h2>
+<p>MRC Tuner Studio 内置名为 <code>mtrmcp.exe</code> 的 <strong>Model Context Protocol (MCP)</strong> 无头服务器。Claude Desktop、Claude Code、OpenCode、Cursor 等外部 AI 智能体均可通过该协议直接连接 ROM 引擎。</p>
+<ul>
+<li><strong>菜单路径：</strong> <code>AI ▸ MCP Server &amp; AI Integrations (Claude, OpenCode)…</code></li>
+<li><strong>对话框管理：</strong> 一键启停服务器、查看实时输出日志、自动配置 Claude Desktop / Claude Code / OpenCode，或复制通用 JSON 配置片段。</li>
+<li><strong>82 个工具：</strong> 提供完整的工具集，涵盖地图列表/读取/写入、ROM 字节查找与替换、DTC 故障码扫描 (<code>scan_dtcs</code>) 与开关 (<code>set_dtc_status</code>)、校验和验证 (<code>verify_checksums</code>)、自动地图扫描 (<code>scan_rom_maps</code>)、版本快照以及计划优先流程。</li>
+<li><strong>结构化响应：</strong> 每个响应还在 <code>structuredContent</code> 字段中提供真正的 JSON 对象，客户端无需再次解析 <code>text</code> 中的 JSON。</li>
+<li><strong>写入策略：</strong> <code>--bypass-dialogs</code>（默认）直接应用写入工具，且<strong>绝不打开模态对话框</strong>。<code>--confirm</code> 拒绝写入并返回 <code>{"status":"confirmation_required"}</code>，ROM 保持不变。<code>--read-only</code> 则完全不列出写入工具。</li>
+<li><strong>只读保证：</strong> 该保证现同样覆盖边缘情况——日志写入 (<code>append_tuning_note</code>、<code>log_dyno_result</code>)、校验和修正 (<code>verify_checksums</code> 配合 <code>correct</code>)、ROM 扫描、目标 ROM 选择以及关闭工程。</li>
+<li><strong>撤销 / 重做 / 状态：</strong> <code>undo_last_change</code>、<code>redo</code> 与 <code>project_status</code> 管理工程状态与历史；<code>project_status</code> 还会报告已修改的地图数量。</li>
+<li><strong>结构化文件夹：</strong> <code>list_folders</code> 与 <code>get_folder_maps</code> 为每个文件夹分别返回 <code>key</code>、<code>description</code> 和 <code>parent</code>，无需手动解析 <code>KEY: "description"</code> 形式的复合名称。 提供完整的工具集，涵盖地图列表/读取/写入、ROM 字节查找与替换、DTC 故障码扫描 (<code>scan_dtcs</code>) 与开关 (<code>set_dtc_status</code>)、校验和验证 (<code>verify_checksums</code>)、自动地图扫描 (<code>scan_rom_maps</code>)、版本快照以及计划优先流程。</li>
+<li><strong>安全机制：</strong> 对话框中的“只读模式”默认开启；在此模式下写入工具完全对智能体隐藏，若被调用则直接拒绝。处于写入模式时，每次修改前均会自动创建可撤销的版本快照。</li>
+<li><strong>命令行运行：</strong> 可直接通过 <code>mtrmcp.exe --project &lt;文件.mtrp&gt;</code> 运行，或附加 <code>mtrmcp.exe --read-only</code> 开启只读模式。</li>
 </ul>
 
 
